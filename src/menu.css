@@ -1,0 +1,25 @@
+/* A compact, progressively revealed photographic menu. */
+.menu-expand { text-align: center; padding-top: 36px; }
+.menu-expand > p { color: var(--stone); font-size: 11px; line-height: 1.8; margin-bottom: 18px; }
+.menu-expand .button { min-width: 190px; }
+.menu-toggle-up { rotate: 180deg; }
+.menu-dish-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 30px; margin-top: 39px; }
+.menu-card-text { border-top: 1px solid var(--line); padding-block: 24px 28px; }
+.menu-card-text .menu-card-info { padding: 0; }
+.menu-dish-meta { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.menu-cuisine-label { color: #b9a78a; font-size: 8px; letter-spacing: .6px; }
+.menu-card-text h3 { font-size: 26px; line-height: 1.15; margin-block: 14px 11px; }
+.menu-card-text p { font-size: 11px; max-width: 100%; line-height: 1.9; }
+@media (max-width: 899px) {
+  .menu-dish-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 25px; }
+}
+@media (max-width: 600px) {
+  .menu-expand { padding-top: 28px; }
+  .menu-expand > p { font-size: 10px; max-width: 290px; margin-inline: auto; }
+  .site-footer > div { flex-wrap: wrap; gap: 14px; }
+  .menu-dish-list { grid-template-columns: 1fr; margin-top: 28px; }
+  .menu-card-text { padding-block: 23px 25px; }
+  .menu-card-text h3 { font-size: 29px; }
+  .menu-card-text p { font-size: 12px; }
+  .menu-cuisine-label { font-size: 9px; }
+}

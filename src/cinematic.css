@@ -1,0 +1,43 @@
+/* Cinematic enhancement layer. Every element has a readable static default. */
+.motion-text { display: inline; }
+.motion-word-mask {
+  display: inline-block;
+  overflow: clip;
+  vertical-align: top;
+  padding: .035em .075em .18em;
+  margin: -.035em -.075em -.18em;
+  white-space: pre;
+  perspective: 700px;
+}
+.motion-word {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  backface-visibility: hidden;
+}
+.reading-progress {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #876d45, #e3c38e);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+.hero-visual { isolation: isolate; }
+.hero h1 { transform-origin: left center; }
+.chef-image, .menu-image, .signature-image-stack, .gallery-item { isolation: isolate; }
+.menu-image > img, .gallery-item > img { transition: transform .65s, filter .4s; }
+.signature-mobile-photo { clip-path: inset(0); }
+.mobile-panel { overflow-y: auto; }
+.button:active, .round-link:active, .menu-filter button:active { scale: .97; }
+.button, .round-link, .menu-filter button { transition: background .25s, color .25s, transform .25s, scale .2s; }
+.menu-card { transform-origin: center top; }
+.gallery-item:focus-visible { z-index: 2; }
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-word { opacity: 1 !important; transform: none !important; }
+  .reading-progress { display: none; }
+  .button:active, .round-link:active, .menu-filter button:active { scale: 1; }
+}

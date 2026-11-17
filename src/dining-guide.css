@@ -1,0 +1,67 @@
+/* Guest information, using the portfolio's existing editorial design. */
+.planning-shortcut { margin-top: 25px; }
+.planning-section { padding-block: 0 100px; }
+.planning-section .section-heading { border-top: 1px solid var(--line); padding-top: 75px; margin-bottom: 42px; }
+.planning-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 45px; padding: 0; margin: 0; list-style: none; }
+.planning-steps > li { padding: 24px 0 28px; border-top: 1px solid var(--line); }
+.planning-number { font-family: var(--serif); color: var(--gold); font-style: italic; font-size: 25px; }
+.planning-steps h3 { font-size: 29px; line-height: 1.15; margin-block: 22px 15px; }
+.planning-steps p { font-size: 12px; line-height: 1.95; color: var(--stone); max-width: 310px; }
+.planning-brief { border-top: 1px solid var(--line); margin-top: 17px; padding-top: 28px; display: flex; align-items: center; justify-content: space-between; gap: 35px; }
+.planning-brief-label { display: block; font-size: 7px; letter-spacing: 1.8px; color: var(--gold); }
+.planning-brief ul { display: flex; flex-wrap: wrap; gap: 9px 18px; list-style: none; margin: 13px 0 0; padding: 0; }
+.planning-brief li { color: var(--stone); font-size: 10px; line-height: 1.7; }
+.planning-brief li:not(:last-child)::after { content: '·'; padding-left: 18px; color: #917851; }
+.planning-brief > .text-link { flex-shrink: 0; }
+.questions-section { border-top: 1px solid var(--line); background: #15130f; padding-block: 85px; }
+.questions-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 90px; align-items: start; }
+.questions-intro h2 { font-size: 54px; letter-spacing: -1px; line-height: 1.05; margin-block: 23px; }
+.questions-intro h2 em { color: var(--gold); }
+.questions-intro > p { color: var(--stone); font-size: 12px; line-height: 1.95; }
+.questions-intro > .eyebrow { color: var(--gold); font-size: 8px; }
+.questions-intro > .text-link { margin-top: 17px; }
+.questions-list { border-top: 1px solid var(--line); }
+.dining-question { border-bottom: 1px solid var(--line); }
+.dining-question summary { min-height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 25px; padding-block: 25px; cursor: pointer; list-style: none; font-size: 13px; color: #ded6c8; line-height: 1.6; }
+.dining-question summary::-webkit-details-marker { display: none; }
+.dining-question summary > svg { flex-shrink: 0; color: var(--gold); transition: transform .2s; }
+.dining-question[open] summary > svg { transform: rotate(45deg); }
+.dining-question[open] summary { color: var(--gold); }
+.dining-question summary:hover { color: var(--gold); }
+.question-answer { padding: 0 30px 27px 0; }
+.question-answer p { color: var(--stone); font-size: 12px; line-height: 1.95; }
+@media (max-width: 899px) {
+  .planning-section { padding-bottom: 75px; }
+  .planning-section .section-heading { padding-top: 60px; }
+  .planning-steps { gap: 27px; }
+  .planning-steps h3 { font-size: 26px; }
+  .planning-steps p { font-size: 11px; }
+  .planning-brief { gap: 25px; align-items: flex-start; }
+  .planning-brief li { font-size: 9px; }
+  .questions-section { padding-block: 65px; }
+  .questions-layout { gap: 45px; grid-template-columns: .9fr 1.1fr; }
+  .questions-intro h2 { font-size: 44px; }
+  .dining-question summary { font-size: 12px; min-height: 78px; }
+}
+@media (max-width: 600px) {
+  .planning-section { padding-bottom: 60px; }
+  .planning-section .section-heading { padding-top: 50px; margin-bottom: 29px; }
+  .planning-steps { grid-template-columns: 1fr; gap: 0; }
+  .planning-steps > li { display: grid; grid-template-columns: 31px 1fr; gap: 13px 15px; padding-block: 25px; }
+  .planning-number { grid-row: 1 / 3; padding-top: 1px; font-size: 24px; }
+  .planning-steps h3 { margin: 0; font-size: 28px; }
+  .planning-steps p { grid-column: 2; font-size: 12px; max-width: 100%; }
+  .planning-brief { display: block; margin-top: 0; padding-top: 24px; }
+  .planning-brief ul { gap: 8px 13px; }
+  .planning-brief li { font-size: 10px; }
+  .planning-brief li:not(:last-child)::after { padding-left: 13px; }
+  .planning-brief > .text-link { margin-top: 18px; }
+  .questions-section { padding-block: 55px; }
+  .questions-layout { grid-template-columns: 1fr; gap: 31px; }
+  .questions-intro h2 { font-size: 43px; margin-block: 22px; }
+  .questions-intro > p { font-size: 12px; }
+  .dining-question summary { min-height: 76px; padding-block: 22px; font-size: 12px; }
+  .question-answer { padding-right: 5px; }
+  .question-answer p { font-size: 12px; }
+  .site-footer > div { flex-wrap: wrap; gap: 16px; }
+}
