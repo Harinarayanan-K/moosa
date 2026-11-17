@@ -7,6 +7,8 @@ test('full portfolio remains available with clear prelaunch notices', async ({ p
   await page.goto('/');
   await expect(page.getByRole('complementary', { name: 'Launch announcement' })).toContainText('Coming soon to Prague');
   await expect(page.locator('#home')).toContainText('Not launched yet');
+  await expect(page.locator('#menu')).toContainText('Full menus coming soon');
+  await expect(page.locator('#home img[src*="hero-italian"]')).toHaveCount(0);
   for (const id of ['the-chef', 'menu', 'experiences', 'gallery', 'contact']) await expect(page.locator(`#${id}`)).toBeAttached();
   await page.getByRole('link', { name: 'Early enquiries', exact: true }).click();
   await expect(page).toHaveURL(/#contact$/);

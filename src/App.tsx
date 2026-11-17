@@ -10,6 +10,7 @@ import { contact, emailLink, whatsappLink } from './config/contact';
 import { site } from './config/site';
 import MotionText from './components/MotionText';
 import WhatsAppIcon from './components/WhatsAppIcon';
+import CuisineRibbon from './components/CuisineRibbon';
 import useCinematicMotion from './hooks/useCinematicMotion';
 import useHeroSlideshow from './hooks/useHeroSlideshow';
 import { heroSlides } from './hero-slides';
@@ -150,7 +151,7 @@ function App({ onReplayWelcome }: { onReplayWelcome?: () => void }) {
     <Navigation reduced={reduced} />
     <main id="main">
       <section id="home" ref={heroElement} className="hero hero-editorial" aria-labelledby="hero-title" onFocusCapture={event => { const target = event.target as HTMLElement; if (target.matches(':focus-visible') && !target.closest('.hero-slide-pause')) hero.pause(); }}>
-        <div className="hero-backdrop" aria-hidden="true">{heroSlides.map((slide, index) => <div className={`hero-slide ${hero.active === index ? 'is-active' : ''}`} key={slide.image}><picture><source media="(max-width: 600px)" srcSet={`${asset(slide.mobileImage, true)} 480w, ${asset(slide.mobileImage)} 900w`} sizes="100vw" width="900" height="1600" /><img src={asset(slide.image)} srcSet={`${asset(slide.image, true)} 640w, ${asset(slide.image)} ${slide.width}w`} sizes="100vw" alt="" width={slide.width} height={slide.height} fetchPriority={index === 0 ? 'high' : 'low'} /></picture></div>)}</div>
+        <div className="hero-backdrop" aria-hidden="true">{heroSlides.map((slide, index) => <div className={`hero-slide ${hero.active === index ? 'is-active' : ''}`} data-dish={slide.dish} key={slide.image}><picture><source media="(max-width: 600px)" srcSet={`${asset(slide.mobileImage, true)} 480w, ${asset(slide.mobileImage)} 900w`} sizes="100vw" width="900" height="1600" /><img src={asset(slide.image)} srcSet={`${asset(slide.image, true)} 640w, ${asset(slide.image)} ${slide.width}w`} sizes="100vw" alt="" width={slide.width} height={slide.height} fetchPriority={index === 0 ? 'high' : 'low'} /></picture></div>)}</div>
         <div className="section-shell hero-foreground">
         <div className="hero-copy">
           <div className="hero-reveal"><Eyebrow>MOOSA · PRIVATE CHEF PRAGUE</Eyebrow></div>
@@ -175,7 +176,7 @@ function App({ onReplayWelcome }: { onReplayWelcome?: () => void }) {
         </div>
       </section>
 
-      <div className="cuisine-ribbon" aria-label="Five cuisines">{cuisines.slice(1).map(name => <span key={name}>{name}<i>✦</i></span>)}</div>
+      <CuisineRibbon reduced={reduced} />
 
       <section className="chef-section" id="the-chef" aria-labelledby="chef-title"><div className="section-shell chef-layout">
         <div className="chef-image-wrap" data-reveal><div className="chef-image"><img src={asset('chef')} alt="Chef Moosa in his black chef jacket, standing with arms folded in a warmly lit restaurant" width="1000" height="1250" loading="lazy" /></div><span className="image-index">01 / THE PERSON BEHIND THE PLATE</span><div className="chef-seal"><ChefHat size={30} strokeWidth={1} /><span>MADE WITH<br />PERSONALITY</span></div></div>
@@ -191,15 +192,15 @@ function App({ onReplayWelcome }: { onReplayWelcome?: () => void }) {
       </section>
 
       <section id="menu" className="menu-section" aria-labelledby="menu-title"><div className="section-shell">
-        <div className="menu-intro" data-reveal><Eyebrow>A MENU WITHOUT BORDERS</Eyebrow><h2 id="menu-title"><MotionText>Follow your</MotionText>{' '}<em><MotionText>appetite.</MotionText></em></h2><p>{dishes.length} illustrative dishes. Five culinary worlds.<br />A little inspiration for a menu made just for you.</p></div>
-        {!site.launched && <p className="launch-preview-note">A preview of menus to come. Private dining is coming soon to Prague.</p>}
+        <div className="menu-intro" data-reveal><Eyebrow>{site.launched ? 'A MENU WITHOUT BORDERS' : 'MENU PREVIEW · COMING SOON'}</Eyebrow><h2 id="menu-title"><MotionText>Follow your</MotionText>{' '}<em><MotionText>appetite.</MotionText></em></h2><p>{dishes.length} illustrative dishes. Five culinary worlds.<br />Five dishes from each cuisine, selected to inspire your own menu.</p></div>
+        {!site.launched && <p className="launch-preview-note">Full menus coming soon. Explore five signature ideas from each cuisine.</p>}
         <div className="menu-filter" aria-label="Filter menu by cuisine">{cuisines.map(name => <button type="button" aria-pressed={cuisine === name} className={cuisine === name ? 'selected' : ''} onClick={() => { setCuisine(name); setMenuExpanded(false); }} key={name}>{name}<span>{String(cuisineCount(name)).padStart(2, '0')}</span></button>)}</div>
         <div className="menu-status"><span><span className="status-dot" /> ILLUSTRATIVE MENU</span><span aria-live="polite" role="status">{visibleDishes.length < filtered.length ? `Showing ${visibleDishes.length} of ${filtered.length} dishes` : `${filtered.length} dishes`} · {cuisine === 'All' ? 'All cuisines' : cuisine}</span></div>
         <div className="menu-grid" id="menu-dishes" ref={menuGrid}>{visibleDishes.map(dish => <MenuDish dish={dish} key={dish.name} />)}</div>
-        {cuisine === 'All' && <div className="menu-expand"><p>{menuExpanded ? 'The full collection. Every menu is personalised on request.' : 'A taste of the collection. Discover all 50 dishes when you’re ready.'}</p><button type="button" className="button button-outline" aria-expanded={menuExpanded} aria-controls="menu-dishes" onClick={() => {
+        {cuisine === 'All' && <div className="menu-expand"><p>{menuExpanded ? 'Five dishes per cuisine. Full menus coming soon.' : `Explore all ${dishes.length} dishes in this preview. Full menus coming soon.`}</p><button type="button" className="button button-outline" aria-expanded={menuExpanded} aria-controls="menu-dishes" onClick={() => {
           setMenuExpanded(value => !value);
           if (menuExpanded) requestAnimationFrame(() => document.getElementById('menu')?.scrollIntoView({ behavior: reduced ? 'instant' : 'smooth', block: 'start' }));
-        }}>{menuExpanded ? 'Show less' : 'See full menu'}<ArrowDown className={menuExpanded ? 'menu-toggle-up' : ''} size={17} /></button></div>}
+        }}>{menuExpanded ? 'Show less' : site.launched ? 'See full menu' : 'See menu preview'}<ArrowDown className={menuExpanded ? 'menu-toggle-up' : ''} size={17} /></button></div>}
         <div className="menu-footnote"><div><Check size={17} strokeWidth={1.5} /><span>Personalised menus on request</span></div><ContactAction className="text-link" context={`${cuisine === 'All' ? 'a menu exploring all cuisines' : `the ${cuisine} menu`}`}>Enquire about this menu</ContactAction></div>
       </div></section>
 

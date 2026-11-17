@@ -5,6 +5,7 @@
 .hero-slide { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
 .hero-slide picture { display: block; width: 100%; height: 100%; }
 .hero-slide.is-active { opacity: 1; }
+.hero-slide[data-dish="Croquette"]::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #0d0c0a70, #0d0c0a50 48%, transparent 78%); }
 .hero-slideshow-controls { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 0 0 23px; }
 .hero-slide-caption > span { color: #d3b785; font-size: 8px; letter-spacing: 1.4px; text-transform: uppercase; }
 .hero-slide-caption > p { font-family: var(--serif); color: var(--ivory); font-size: 25px; margin-top: 5px; }
@@ -46,15 +47,18 @@
 }
 @media (max-width: 600px) {
   /* One photograph covers the entire mobile hero, including copy and controls. */
-  .hero.hero-editorial { display: block; }
-  .hero-editorial .hero-foreground { display: flex; flex-direction: column; min-height: max(720px, calc(100vw * 16 / 9)); }
+  .hero.hero-editorial { display: block; --hero-mobile-trim: 120px; }
+  .hero-editorial .hero-foreground { display: flex; flex-direction: column; min-height: max(600px, calc(100vw * 16 / 9 - var(--hero-mobile-trim))); }
   .hero-editorial .hero-copy { display: flex; width: 100%; max-width: none; padding: 28px 0 0; }
   .hero-editorial .hero-copy > .hero-reveal { width: 100%; margin: 0; }
   .hero-editorial .eyebrow { color: #f0dfc3; }
   .hero-editorial h1 { width: 100%; margin: 24px 0 0; font-size: clamp(36px, 10.3vw, 60px); line-height: 1.08; letter-spacing: -.7px; }
   .hero-editorial .hero-backdrop { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; }
-  .hero-editorial .hero-backdrop img { object-position: center; filter: saturate(.95); }
+  .hero-editorial .hero-backdrop picture { position: absolute; inset: auto 0 0; width: 100%; height: calc(100% + var(--hero-mobile-trim)); }
+  .hero-editorial .hero-backdrop img { object-position: center bottom; filter: saturate(.95); }
   .hero-editorial .hero-backdrop::after { background: linear-gradient(180deg, #0d0c0a85, #0d0c0a70 42%, #0d0c0a30 62%, #0d0c0a80); }
+  .hero-slide[data-dish="Croquette"]::after { background: linear-gradient(180deg, transparent 25%, #0d0c0a75 45%, #0d0c0a85 75%, #0d0c0a55); }
+  .hero-slide-caption > span { color: #f0dfc3; }
   .hero-editorial .hero-introduction { width: 100%; margin: 18px 0 0; }
   .hero-editorial .hero-description { font-size: 13px; line-height: 1.85; max-width: 100%; color: #ded5c9; }
   .hero-editorial .hero-actions { flex-direction: row; align-items: center; gap: 16px; margin-top: 18px; }
@@ -64,7 +68,7 @@
   .hero-editorial .hero-slideshow-controls { width: 100%; margin: auto 0 0; padding: 22px 0 8px; align-items: flex-start; flex-direction: column; gap: 3px; }
   .hero-slide-caption > p { font-size: 23px; }
   .hero-slide-navigation { margin-left: -8px; gap: 1px; }
-  .hero-slide-dots button { min-width: 30px; }
+  .hero-slide-dots button { min-width: 24px; }
   .hero-editorial .hero-bottom { width: 100%; margin: 0; padding-block: 13px; font-size: 6px; }
   .hero-editorial .hero-image-credit { width: 100%; margin: 0; padding-bottom: 10px; font-size: 7px; color: #d1c5b3; }
   .hero-chef-link { font-size: 8px; gap: 10px; }

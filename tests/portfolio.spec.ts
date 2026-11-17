@@ -4,11 +4,11 @@ import { cuisines, dishes } from '../src/menu';
 import { statSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-test('every cuisine has at least ten distinct, described dishes', () => {
+test('every cuisine has exactly five distinct, photographed preview dishes', () => {
   expect(new Set(dishes.map(dish => dish.name)).size).toBe(dishes.length);
   for (const cuisine of cuisines.filter(cuisine => cuisine !== 'All')) {
     const choices = dishes.filter(dish => dish.cuisine === cuisine);
-    expect(choices.length).toBeGreaterThanOrEqual(10);
+    expect(choices.length).toBe(5);
     for (const dish of choices) {
       expect(dish.description.length).toBeGreaterThan(20);
       expect(dish.course.length).toBeGreaterThan(0);
@@ -42,17 +42,17 @@ test('all cuisine filters work and preserve the correct results', async ({ page 
   await page.getByRole('link', { name: 'Explore the Menu' }).click();
   await expect(page).toHaveURL(/#menu$/);
   await expect(page.locator('.menu-card')).toHaveCount(6);
-  const expand = page.getByRole('button', { name: 'See full menu' });
+  const expand = page.getByRole('button', { name: 'See menu preview' });
   await expect(expand).toHaveAttribute('aria-expanded', 'false');
   await expand.click();
-  await expect(page.locator('.menu-card')).toHaveCount(50);
-  await expect(page.locator('.menu-card .menu-image img')).toHaveCount(50);
+  await expect(page.locator('.menu-card')).toHaveCount(25);
+  await expect(page.locator('.menu-card .menu-image img')).toHaveCount(25);
   await page.getByRole('button', { name: 'Show less' }).click();
   await expect(page.locator('.menu-card')).toHaveCount(6);
   for (const [cuisine, count, dish] of [
-    ['Kerala', 10, 'Kerala Fish Moilee'], ['Indian', 10, 'Chicken Biryani'],
-    ['Italian', 10, 'Wild Mushroom Ravioli'], ['European', 10, 'Herb-Roasted Sea Bass'],
-    ['Middle Eastern', 10, 'Chargrilled Lamb Kofta'],
+    ['Kerala', 5, 'Kerala Fish Moilee'], ['Indian', 5, 'Chicken Biryani'],
+    ['Italian', 5, 'Wild Mushroom Ravioli'], ['European', 5, 'Herb-Roasted Sea Bass'],
+    ['Middle Eastern', 5, 'Chargrilled Lamb Kofta'],
   ] as const) {
     await page.getByRole('button', { name: new RegExp(`^${cuisine}`) }).click();
     await expect(page.locator('.menu-card')).toHaveCount(count);
@@ -162,7 +162,7 @@ test('reduced motion keeps all content visible and interactions functional', asy
   for (const item of await page.locator('.hero-reveal').all()) await expect(item).toHaveCSS('opacity', '1');
   for (const image of await page.locator('#home .hero-backdrop img').all()) await expect(image).toHaveCSS('transform', 'none');
   await page.getByRole('button', { name: /^Kerala/ }).click();
-  await expect(page.locator('.menu-card')).toHaveCount(10);
+  await expect(page.locator('.menu-card')).toHaveCount(5);
 });
 
 test('signature photographs crossfade on desktop and stack on mobile', async ({ page }, testInfo) => {
@@ -198,7 +198,7 @@ test('motion preferences can change while browsing', async ({ page }) => {
   }
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.getByRole('button', { name: /^Italian/ }).click();
-  await expect(page.locator('.menu-card')).toHaveCount(10);
+  await expect(page.locator('.menu-card')).toHaveCount(5);
   await expect(page.locator('.menu-card h3').first()).toHaveText('Wild Mushroom Ravioli');
   const menuUrl = new URL((await page.getByRole('link', { name: 'Enquire about this menu' }).getAttribute('href'))!);
   expect(menuUrl.pathname).toBe('/420722018176');

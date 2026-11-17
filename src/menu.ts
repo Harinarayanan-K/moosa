@@ -19,6 +19,7 @@ export const featuredDishes = [
   { name: 'Herb-Roasted Sea Bass', cuisine: 'European', course: 'Main course', description: 'Crisp-skinned sea bass, seasonal vegetables and a delicate herb finish.', image: 'sea-bass-editorial', alt: 'Illustrative crisp-skinned sea bass fillet with roasted vegetables and herbs' },
   { name: 'Chargrilled Lamb Kofta', cuisine: 'Middle Eastern', course: 'Main course', description: 'Chargrilled spiced lamb, cool yoghurt and bright, freshly picked herbs.', image: 'kofta-editorial', alt: 'Illustrative chargrilled lamb kofta with yoghurt and herbs' },
   { name: 'Seasonal Garden Plate', cuisine: 'European', course: 'Starter', description: 'A celebration of seasonal vegetables, contrasting textures and fresh flavours.', image: 'garden', alt: 'Illustrative carefully composed seasonal vegetable plate' },
+  { name: 'Croquette', cuisine: 'European', course: 'Starter', description: 'Crisp golden croquettes, geometric sauce accents, a delicate purée and green herb oil.', image: 'croquette-editorial', alt: 'AI-illustrated golden croquettes on an ivory plate with intersecting triangular sauces, inspired by the supplied plating reference' },
 ] as const satisfies readonly Dish[];
 
 // Each entry is [dish name, course, editable description].
@@ -26,7 +27,7 @@ function ideas(cuisine: Dish['cuisine'], entries: readonly (readonly [string, st
   return entries.map(([name, course, description]) => ({ name, cuisine, course, description, image: menuPhotos[name], alt: `Illustrative ${name}` }));
 }
 
-export const dishes: readonly Dish[] = [
+export const allMenuIdeas: readonly Dish[] = [
   ...featuredDishes,
   ...ideas('Kerala', [
     ['Appam & Vegetable Stew', 'Main course', 'Lacy appam with a gentle coconut-milk stew of vegetables, ginger and whole spices.'],
@@ -83,6 +84,17 @@ export const dishes: readonly Dish[] = [
     ['Kunafa', 'Dessert', 'Golden pastry with a soft cheese filling, fragrant syrup and chopped pistachios.'],
   ]),
 ];
+
+// The public coming-soon preview: exactly five major dishes per cuisine.
+// Other ideas remain editable above for a future full menu.
+const previewDishNames = new Set([
+  'Kerala Fish Moilee', 'Appam & Vegetable Stew', 'Beef Ularthiyathu', 'Karimeen Pollichathu', 'Thalassery Chicken Biryani',
+  'Chicken Biryani', 'Butter Chicken', 'Tandoori Chicken', 'Palak Paneer', 'Dal Makhani',
+  'Wild Mushroom Ravioli', 'Spaghetti Carbonara', 'Lasagna al Forno', 'Pizza Margherita', 'Tiramisu',
+  'Herb-Roasted Sea Bass', 'Croquette', 'Beef Bourguignon', 'Beef Wellington', 'Crème Brûlée',
+  'Chargrilled Lamb Kofta', 'Chicken Shawarma', 'Falafel', 'Hummus', 'Kunafa',
+]);
+export const dishes: readonly Dish[] = allMenuIdeas.filter(dish => previewDishNames.has(dish.name));
 
 export const signatures = [featuredDishes[0], featuredDishes[2], featuredDishes[4]];
 export const cuisineCount = (cuisine: Cuisine) => cuisine === 'All' ? dishes.length : dishes.filter(dish => dish.cuisine === cuisine).length;

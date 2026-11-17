@@ -4,7 +4,7 @@ A complete, browser-only portfolio built with React, TypeScript, Vite, Tailwind 
 
 ## Coming-soon mode (currently active)
 
-The entire portfolio is visible: chef biography, signature dishes, all 50 menu photographs, cuisine filters, experiences, gallery, FAQs and contact. A banner, hero label, menu/experience notices and contact copy clearly identify it as a coming-soon preview. WhatsApp and email messages state that these are early enquiries. No launch date or countdown is assumed.
+The entire portfolio is visible: chef biography, signature dishes, 25 selected menu photographs, cuisine filters, experiences, gallery, FAQs and contact. A banner, hero label, menu/experience notices and contact copy clearly identify it as a coming-soon preview. WhatsApp and email messages state that these are early enquiries. No launch date or countdown is assumed.
 
 - `src/config/site.ts`: set `launched` to `true` to remove prelaunch notices. Update the title and description in `index.html` for launch, then rebuild and upload `dist/`.
 - `src/launch.css`: the announcement banner and prelaunch notices.
@@ -49,7 +49,7 @@ WhatsApp is configured with the supplied number, +420 722 018 176, and email wit
 ## Edit the portfolio
 
 - **`src/content.ts`**: biography, chef role, experience descriptions, gallery captions, planning guide and FAQs. Biography facts come from the supplied poster.
-- **`src/menu.ts`**: 50 illustrated dishes, with 10 in each cuisine, editable names, course labels and descriptions. Counts are calculated automatically; there are no invented prices or availability claims.
+- **`src/menu.ts`**: 25 illustrated preview dishes, exactly five in each cuisine, editable names, course labels and descriptions. The `previewDishNames` selection controls the visible dishes; the larger `allMenuIdeas` collection is retained for future editing. Counts are calculated automatically. Full menus are marked coming soon; there are no invented prices or availability claims.
 - **`src/menu-photos.json`**: the mapping between the 44 additional menu dishes and their local photographs. Original featured image paths remain in `src/menu.ts`.
 - **`public/images/`**: optimised WebP photography. Match the existing filenames to replace an image without code changes, or update the image name in `src/content.ts`. Menu image variants use `name.webp` and `name-small.webp`.
 - **`src/styles.css`**: palette, type, spacing, responsive layouts and motion preferences.
@@ -59,7 +59,8 @@ WhatsApp is configured with the supplied number, +420 722 018 176, and email wit
 - **`src/hooks/useCinematicMotion.ts`**: GSAP text and photographic reveals, restrained portrait parallax and desktop signature-dish transitions.
 - **`src/hero.css`**: the hero’s shared left alignment, complete headline phrases, supporting copy and responsive layout. The slideshow images, mobile image variants, region labels and dish captions are in `src/hero-slides.ts`.
 - **`src/menu.css`**: the compact menu presentation.
-- **`output/imagegen/hero-prompts.json`**: the final prompt set for the five generated hero images. Mobile prompts are in `output/imagegen/hero-mobile-prompts.json`; the pumpkin soup replacement prompts are in `output/imagegen/hero-pumpkin-prompts.json`. Original PNGs are saved in the same local directory; publishable WebP files are in `public/images/`. Regenerate derivatives with `node scripts/optimise-hero-assets.mjs` and `node scripts/optimise-mobile-hero-assets.mjs`.
+- **`src/components/CuisineRibbon.tsx`** and **`src/components/cuisine-ribbon.css`**: the compact cuisine badges, continuous 44-second motion loop and static reduced-motion layout. Cuisine names come from the shared menu content.
+- **`output/imagegen/hero-prompts.json`**: the final prompt set for the five generated hero images. Mobile prompts are in `output/imagegen/hero-mobile-prompts.json`; the pumpkin soup replacement prompts are in `output/imagegen/hero-pumpkin-prompts.json`; croquette prompts are in `output/imagegen/croquette-prompts.json`. Original PNGs are saved in the same local directory; publishable WebP files are in `public/images/`. Regenerate derivatives with `node scripts/optimise-hero-assets.mjs` and `node scripts/optimise-mobile-hero-assets.mjs`.
 - **`ASSETS.md`**: asset sources and generated-image production notes.
 - **`PORTFOLIO-REVIEW.md`**: the official chef websites reviewed, the resulting improvements and remaining content recommendations.
 
@@ -68,10 +69,11 @@ To optimise new JPEG/PNG images, place them in `public/images/` and run `node sc
 ## Behaviour and accessibility
 
 - Native anchor navigation and natural scrolling; animated, focus-trapped mobile navigation.
+- A minimal, continuously moving champagne-gold cuisine badge ribbon, without a heading or controls. Screen readers receive each cuisine once; reduced motion presents all five badges in a still, wrapping layout.
 - Masked text and photo reveals, restrained desktop parallax, signature-image crossfades and gallery feedback. All scrolling remains natural, and reduced motion is respected.
-- Six photographic dishes appear initially. “See full menu” reveals all 50, and “Show less” restores the six-dish preview. Cuisine filters show ten photographed dishes each and returning to All restores the compact preview.
+- Six photographic dishes appear initially. “See menu preview” reveals all 25 selected dishes, and “Show less” restores the compact preview. Cuisine filters show exactly five photographed dishes each and returning to All restores the compact preview.
 - A three-step enquiry guide, a checklist of helpful details, and native keyboard-accessible FAQs. Planning copy and FAQ answers are editable in `src/content.ts`.
-- Sticky signature imagery on desktop and a natural vertical photo layout on mobile. Moosa's portrait appears only in the chef section. The hero opens with roasted pumpkin soup garnished with roasted cashews, toasted pumpkin seeds and green herb oil. It rotates five bespoke wide, illustrative food images every seven seconds with gentle slide transitions and no zoom. The photograph itself fills the hero with `object-fit: cover`, without side frames, masks or duplicate background layers; mobile uses dedicated portrait compositions as one continuous background behind the headline, description, buttons, slideshow controls and hero footer. Previous/next, region selectors and pause/play controls remain available. Playback continues while hovering and after pointer-based selections. Keyboard focus pauses playback; leaving the hero or hiding the tab temporarily suspends it. Reduced motion disables autoplay and animated transitions while keeping manual selection.
+- Sticky signature imagery on desktop and a natural vertical photo layout on mobile. Moosa's portrait appears only in the chef section. The hero opens with roasted pumpkin soup garnished with roasted cashews, toasted pumpkin seeds and green herb oil. It rotates five bespoke wide, illustrative food images every five seconds with gentle slide transitions and no zoom. The photograph itself fills the hero with `object-fit: cover`, without side frames, masks or duplicate background layers; mobile uses dedicated portrait compositions as one continuous background behind all hero content. Its upper 120 pixels of empty tabletop are trimmed to bring the food higher, with a correspondingly shorter hero and no zoom animation. Previous/next, region selectors and pause/play controls remain available. Playback continues while hovering and after pointer-based selections. Keyboard focus pauses playback; leaving the hero or hiding the tab temporarily suspends it. Reduced motion disables autoplay and animated transitions while keeping manual selection.
 - Gallery dialog with previous/next, arrow keys, Escape, focus trapping and focus restoration.
 - WhatsApp and email configuration validated before any external link is created.
 - Reduced-motion preference respected, including changes while the page is open; animation listeners and instances cleaned up.

@@ -29,7 +29,6 @@ export default function useCinematicMotion(root: RefObject<HTMLDivElement | null
           if (children.length) timeline.fromTo(children, { y: 38, opacity: .2 }, { y: 0, opacity: 1, duration: .95, stagger: .1, ease: 'power3.out', clearProps: 'transform,opacity' }, .12);
         });
 
-        gsap.fromTo('.cuisine-ribbon>span', { y: 25, opacity: .15 }, { y: 0, opacity: 1, stagger: .1, duration: .85, ease: 'power3.out', scrollTrigger: { trigger: '.cuisine-ribbon', start: 'top 96%', once: true }, clearProps: 'transform,opacity' });
         gsap.fromTo('.chef-image', { clipPath: 'inset(8% 0 8% 0)' }, { clipPath: 'inset(0% 0 0% 0)', duration: 1.1, ease: 'power2.out', scrollTrigger: { trigger: '.chef-image', start: 'top 88%', once: true }, clearProps: 'clipPath' });
         gsap.utils.toArray<HTMLElement>('.gallery-item:not(.gallery-item-6)').forEach(item => {
           gsap.fromTo(item, { y: 22, opacity: .4 }, { y: 0, opacity: 1, duration: .75, ease: 'power2.out', scrollTrigger: { trigger: item, start: 'top 93%', once: true }, clearProps: 'transform,opacity' });
