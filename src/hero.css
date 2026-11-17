@@ -1,7 +1,7 @@
 /* Editorial typography over locally hosted, illustrative regional food photography. */
 .hero.hero-editorial { display: block; min-height: 0; padding-top: 0; isolation: isolate; background: var(--obsidian, #0d0c0a); }
 .hero-backdrop { position: absolute; inset: 0; overflow: hidden; z-index: -1; pointer-events: none; }
-.hero-backdrop img { width: 100%; height: 100%; object-fit: contain; object-position: center; filter: saturate(.85); }
+.hero-backdrop img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.95); }
 .hero-slide { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
 .hero-slide picture { display: block; width: 100%; height: 100%; }
 .hero-slide.is-active { opacity: 1; }
@@ -16,7 +16,7 @@
 .hero-slide-dots button > span { width: 20px; height: 2px; background: #b0a28c70; transition: background .25s; }
 .hero-slide-dots button[aria-pressed="true"] > span { background: #e6c48d; }
 .hero-slide-pause { margin-left: 10px; border-left: 1px solid var(--line) !important; }
-.hero-backdrop::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #0d0c0ae8 0%, #0d0c0a9c 48%, #0d0c0ace 100%), linear-gradient(0deg, #0d0c0a 0%, transparent 27%, transparent 75%, #0d0c0a70 100%); }
+.hero-backdrop::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #0d0c0ac9, #0d0c0a70 48%, #0d0c0a20); }
 .hero-foreground { position: relative; }
 .hero-image-credit { display: block; padding-bottom: 14px; color: #b6aea1; font-size: 8px; letter-spacing: .6px; text-align: right; }
 .hero-editorial .hero-copy { display: flex; flex-direction: column; align-items: flex-start; max-width: 740px; padding: 76px 0 60px; text-align: left; }
@@ -45,31 +45,28 @@
   .hero-editorial .hero-bottom > span:nth-child(2) { display: none; }
 }
 @media (max-width: 600px) {
-  /* A portrait composition unites the headline and a large, complete serving plate. */
-  .hero.hero-editorial { display: grid; grid-template-columns: minmax(0, 1fr); background: #191713; }
-  .hero-editorial .hero-foreground, .hero-editorial .hero-copy { display: contents; }
-  .hero-editorial .hero-copy > .hero-reveal { grid-area: 1 / 1; align-self: start; z-index: 2; width: calc(100% - 44px); margin: 28px auto 0; }
+  /* One photograph covers the entire mobile hero, including copy and controls. */
+  .hero.hero-editorial { display: block; }
+  .hero-editorial .hero-foreground { display: flex; flex-direction: column; min-height: max(720px, calc(100vw * 16 / 9)); }
+  .hero-editorial .hero-copy { display: flex; width: 100%; max-width: none; padding: 28px 0 0; }
+  .hero-editorial .hero-copy > .hero-reveal { width: 100%; margin: 0; }
   .hero-editorial .eyebrow { color: #f0dfc3; }
-  .hero-editorial h1 { grid-area: 1 / 1; align-self: start; z-index: 2; width: calc(100% - 44px); margin: 74px auto 0; }
-  .hero-editorial .hero-backdrop { grid-area: 1 / 1; position: relative; inset: auto; z-index: 0; width: 100%; aspect-ratio: 9 / 16; }
+  .hero-editorial h1 { width: 100%; margin: 24px 0 0; font-size: clamp(36px, 10.3vw, 60px); line-height: 1.08; letter-spacing: -.7px; }
+  .hero-editorial .hero-backdrop { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; }
   .hero-editorial .hero-backdrop img { object-position: center; filter: saturate(.95); }
-  .hero-editorial .hero-backdrop::after { background: linear-gradient(180deg, #0d0c0a65, transparent 50%, #19171318); }
-  .hero-editorial .hero-slideshow-controls { grid-area: 3 / 1; width: calc(100% - 44px); margin-inline: auto; padding-top: 0; padding-bottom: 0; }
-  .hero-editorial .hero-introduction { grid-area: 2 / 1; width: calc(100% - 44px); margin: 25px auto 28px; }
-  .hero-editorial .hero-bottom { grid-area: 4 / 1; width: calc(100% - 44px); margin-inline: auto; }
-  .hero-editorial .hero-image-credit { grid-area: 5 / 1; width: calc(100% - 44px); margin-inline: auto; }
-  .hero-slideshow-controls { align-items: flex-start; flex-direction: column; gap: 7px; padding-bottom: 20px; }
-  .hero-slide-caption > p { font-size: 24px; }
+  .hero-editorial .hero-backdrop::after { background: linear-gradient(180deg, #0d0c0a85, #0d0c0a70 42%, #0d0c0a30 62%, #0d0c0a80); }
+  .hero-editorial .hero-introduction { width: 100%; margin: 18px 0 0; }
+  .hero-editorial .hero-description { font-size: 13px; line-height: 1.85; max-width: 100%; color: #ded5c9; }
+  .hero-editorial .hero-actions { flex-direction: row; align-items: center; gap: 16px; margin-top: 18px; }
+  .hero-editorial .hero-actions .button { font-size: 11px; padding-inline: 16px; gap: 12px; }
+  .hero-editorial .hero-actions .text-link { font-size: 10px; gap: 7px; color: var(--ivory); text-shadow: 0 1px 8px #000; }
+  .hero-editorial .hero-launch { font-size: 8px; margin-top: 14px; color: #e2cda8; }
+  .hero-editorial .hero-slideshow-controls { width: 100%; margin: auto 0 0; padding: 22px 0 8px; align-items: flex-start; flex-direction: column; gap: 3px; }
+  .hero-slide-caption > p { font-size: 23px; }
   .hero-slide-navigation { margin-left: -8px; gap: 1px; }
   .hero-slide-dots button { min-width: 30px; }
-  .hero-image-credit { font-size: 7px; }
-  .hero-editorial h1 { font-size: clamp(36px, 10.3vw, 60px); line-height: 1.08; letter-spacing: -.7px; }
-  .hero-editorial .hero-description { font-size: 13px; line-height: 1.85; max-width: 100%; }
-  .hero-editorial .hero-actions { flex-direction: row; align-items: center; gap: 19px; margin-top: 23px; }
-  .hero-editorial .hero-actions .button { font-size: 11px; padding-inline: 16px; gap: 12px; }
-  .hero-editorial .hero-actions .text-link { font-size: 10px; gap: 7px; }
-  .hero-editorial .hero-launch { font-size: 8px; margin-top: 22px; }
-  .hero-editorial .hero-bottom { padding-block: 17px; font-size: 6px; }
+  .hero-editorial .hero-bottom { width: 100%; margin: 0; padding-block: 13px; font-size: 6px; }
+  .hero-editorial .hero-image-credit { width: 100%; margin: 0; padding-bottom: 10px; font-size: 7px; color: #d1c5b3; }
   .hero-chef-link { font-size: 8px; gap: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {

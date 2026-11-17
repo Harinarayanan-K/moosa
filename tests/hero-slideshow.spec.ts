@@ -6,15 +6,22 @@ test('hero uses full portrait scenes on phones and wide photographs on desktop w
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
     const image = page.locator('.hero-slide.is-active img');
-    await expect(image).toHaveCSS('object-fit', 'contain');
+    await expect(image).toHaveCSS('object-fit', 'cover');
     await expect(image).toHaveCSS('transform', 'none');
     await image.evaluate((img: HTMLImageElement) => img.decode());
+    const frame = await page.locator('.hero-backdrop').boundingBox();
+    const imageBox = await image.boundingBox();
+    expect(imageBox!.x).toBeCloseTo(frame!.x, 0);
+    expect(imageBox!.width).toBeCloseTo(frame!.width, 0);
+    expect(imageBox!.height).toBeCloseTo(frame!.height, 0);
     const ratio = await image.evaluate((img: HTMLImageElement) => img.naturalWidth / img.naturalHeight);
     if (width <= 600) {
       expect(ratio).toBeCloseTo(9 / 16, 1);
       expect(await image.evaluate((img: HTMLImageElement) => img.currentSrc)).toContain('-mobile');
       const scene = await page.locator('.hero-backdrop').boundingBox();
+      const hero = await page.locator('#home').boundingBox();
       const headline = await page.locator('#hero-title').boundingBox();
+      expect(scene!.height).toBeCloseTo(hero!.height, 0);
       expect(scene!.height).toBeGreaterThan(width * 1.7);
       expect(headline!.y + headline!.height).toBeLessThan(scene!.y + scene!.height / 2);
     } else expect(ratio).toBeGreaterThan(1.7);

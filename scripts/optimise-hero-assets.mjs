@@ -1,7 +1,8 @@
 import sharp from 'sharp';
 
 // Keep the generated originals; publish resized WebP derivatives without any crop.
-for (const region of ['kerala', 'indian', 'italian', 'middle-eastern', 'european']) {
+const selected = process.argv.slice(2);
+for (const region of selected.length ? selected : ['pumpkin', 'indian', 'italian', 'middle-eastern', 'european']) {
   const name = `hero-${region}-wide`;
   for (const width of [1600, 640]) {
     const target = `public/images/${name}${width === 640 ? '-small' : ''}.webp`;
