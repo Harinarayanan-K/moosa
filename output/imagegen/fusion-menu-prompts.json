@@ -1,0 +1,68 @@
+{
+  "mode": "built-in image_gen",
+  "created": "2026-11-17",
+  "note": "Original illustrative mild fusion ideas; not a fixed or launched offering.",
+  "references": [
+    "https://www.greatbritishchefs.com/recipes/seafood-moilee-recipe",
+    "https://www.rte.ie/lifestyle/recipes/2012/0410/745064-coconut-and-cardamom-pannacotta/"
+  ],
+  "entries": [
+    {
+      "name": "Cauliflower & Coconut Velouté",
+      "slug": "fusion-cauliflower-coconut-veloute",
+      "course": "Starter",
+      "description": "Roasted cauliflower blended with coconut milk and a little ginger, finished with curry-leaf oil and toasted cauliflower florets.",
+      "pairing": "French-style velouté · Kerala coconut and curry leaves",
+      "subject": "a silky ivory roasted cauliflower and coconut milk velouté in a wide shallow handmade ivory bowl, three small golden roasted cauliflower florets, restrained emerald curry-leaf oil droplets and tiny herbs; refined French soup presentation with Kerala flavours",
+      "asset": "fusion-cauliflower-coconut-veloute",
+      "prompt": "Use case: photorealistic-natural. Asset type: luxury private chef menu illustration, landscape 3:2. Primary request: a silky ivory roasted cauliflower and coconut milk velouté in a wide shallow handmade ivory bowl, three small golden roasted cauliflower florets, restrained emerald curry-leaf oil droplets and tiny herbs; refined French soup presentation with Kerala flavours. This is a mild Kerala-European fusion dish with aromatic seasoning, no chilli heat. Match a coherent premium culinary editorial series: dark warm brown stone tabletop, soft warm natural window sidelight from upper left, deep realistic shadows, subtle rich natural colour and realistic edible textures. Three-quarter overhead angle. The entire serving vessel must be visible with breathing room on all sides, centred and occupying approximately 70% of frame width. Sophisticated restrained plating and garnish. No people, no hands, no cutlery clutter, no red or green chilli peppers, no text, no logos, no watermark, no collage. Do not crop the plate or bowl. This is illustrative menu inspiration, not documentary chef photography."
+    },
+    {
+      "name": "Pan-Seared Cod & Coconut Moilee",
+      "slug": "fusion-cod-coconut-moilee",
+      "course": "Fish course",
+      "description": "Golden pan-seared cod, fondant potato and tender leek, with a mild coconut-milk sauce scented with ginger, turmeric and curry leaves.",
+      "pairing": "European pan-searing · Kerala moilee-inspired sauce",
+      "subject": "one beautifully cooked cod fillet with a golden pan-seared top and thick white flaky flesh, one small fondant potato and tender green leek on a wide ivory plate, a shallow pool of pale golden coconut milk moilee sauce with tiny green curry leaves; refined European restaurant plating, not a curry bowl",
+      "asset": "fusion-cod-coconut-moilee",
+      "prompt": "Use case: photorealistic-natural. Asset type: luxury private chef menu illustration, landscape 3:2. Primary request: one beautifully cooked cod fillet with a golden pan-seared top and thick white flaky flesh, one small fondant potato and tender green leek on a wide ivory plate, a shallow pool of pale golden coconut milk moilee sauce with tiny green curry leaves; refined European restaurant plating, not a curry bowl. This is a mild Kerala-European fusion dish with aromatic seasoning, no chilli heat. Match a coherent premium culinary editorial series: dark warm brown stone tabletop, soft warm natural window sidelight from upper left, deep realistic shadows, subtle rich natural colour and realistic edible textures. Three-quarter overhead angle. The entire serving vessel must be visible with breathing room on all sides, centred and occupying approximately 70% of frame width. Sophisticated restrained plating and garnish. No people, no hands, no cutlery clutter, no red or green chilli peppers, no text, no logos, no watermark, no collage. Do not crop the plate or bowl. This is illustrative menu inspiration, not documentary chef photography."
+    },
+    {
+      "name": "Chicken Roulade & Cashew Cream",
+      "slug": "fusion-chicken-roulade-cashew",
+      "course": "Main course",
+      "description": "Herb-filled chicken roulade, silky potato purée and a gentle cashew-cream sauce, lifted with ginger and curry leaves.",
+      "pairing": "European roulade · Mild cashew, ginger and curry leaves",
+      "subject": "three neat slices of cooked chicken roulade with a pale herb-and-spinach centre, golden roasted exterior and fully cooked ivory chicken flesh, silky potato purée, tender small carrots and a light ivory cashew cream sauce with a few curry leaves on a wide charcoal ceramic plate; elegant restaurant presentation",
+      "asset": "fusion-chicken-roulade-cashew",
+      "prompt": "Use case: photorealistic-natural. Asset type: luxury private chef menu illustration, landscape 3:2. Primary request: three neat slices of cooked chicken roulade with a pale herb-and-spinach centre, golden roasted exterior and fully cooked ivory chicken flesh, silky potato purée, tender small carrots and a light ivory cashew cream sauce with a few curry leaves on a wide charcoal ceramic plate; elegant restaurant presentation. This is a mild Kerala-European fusion dish with aromatic seasoning, no chilli heat. Match a coherent premium culinary editorial series: dark warm brown stone tabletop, soft warm natural window sidelight from upper left, deep realistic shadows, subtle rich natural colour and realistic edible textures. Three-quarter overhead angle. The entire serving vessel must be visible with breathing room on all sides, centred and occupying approximately 70% of frame width. Sophisticated restrained plating and garnish. No people, no hands, no cutlery clutter, no red or green chilli peppers, no text, no logos, no watermark, no collage. Do not crop the plate or bowl. This is illustrative menu inspiration, not documentary chef photography."
+    },
+    {
+      "name": "Pumpkin Gnocchi & Curry-Leaf Butter",
+      "slug": "fusion-pumpkin-gnocchi-curry-leaf",
+      "course": "Main course",
+      "description": "Soft pumpkin gnocchi in nutty brown butter, with crisp curry leaves, toasted coconut and a delicate hint of nutmeg.",
+      "pairing": "Italian gnocchi · Kerala curry leaves and toasted coconut",
+      "subject": "soft golden-orange pumpkin gnocchi, distinct small pillowy dumplings with delicate ridges, coated in glossy brown butter, a few crisp green curry leaves and restrained toasted coconut flakes, on a wide ivory shallow ceramic plate; refined appetising Italian-Kerala fusion, no red sauce or chilli",
+      "asset": "fusion-pumpkin-gnocchi-curry-leaf",
+      "prompt": "Use case: photorealistic-natural. Asset type: luxury private chef menu illustration, landscape 3:2. Primary request: soft golden-orange pumpkin gnocchi, distinct small pillowy dumplings with delicate ridges, coated in glossy brown butter, a few crisp green curry leaves and restrained toasted coconut flakes, on a wide ivory shallow ceramic plate; refined appetising Italian-Kerala fusion, no red sauce or chilli. This is a mild Kerala-European fusion dish with aromatic seasoning, no chilli heat. Match a coherent premium culinary editorial series: dark warm brown stone tabletop, soft warm natural window sidelight from upper left, deep realistic shadows, subtle rich natural colour and realistic edible textures. Three-quarter overhead angle. The entire serving vessel must be visible with breathing room on all sides, centred and occupying approximately 70% of frame width. Sophisticated restrained plating and garnish. No people, no hands, no cutlery clutter, no red or green chilli peppers, no text, no logos, no watermark, no collage. Do not crop the plate or bowl. This is illustrative menu inspiration, not documentary chef photography."
+    },
+    {
+      "name": "Tender Coconut Panna Cotta",
+      "slug": "fusion-tender-coconut-panna-cotta",
+      "course": "Dessert",
+      "description": "Silky coconut-milk panna cotta with tender coconut, fragrant cardamom, a bright mango coulis and toasted coconut crumble.",
+      "pairing": "Italian panna cotta · Kerala coconut and cardamom",
+      "subject": "one elegant small ivory coconut panna cotta dome, a restrained golden mango coulis crescent, fine tender coconut ribbons, a little toasted coconut crumble and a tiny green mint tip on a wide ivory dessert plate; silky wobbly texture, refined coconut-cardamom dessert",
+      "asset": "fusion-tender-coconut-panna-cotta",
+      "prompt": "Use case: photorealistic-natural. Asset type: luxury private chef menu illustration, landscape 3:2. Primary request: one elegant small ivory coconut panna cotta dome, a restrained golden mango coulis crescent, fine tender coconut ribbons, a little toasted coconut crumble and a tiny green mint tip on a wide ivory dessert plate; silky wobbly texture, refined coconut-cardamom dessert. This is a mild Kerala-European fusion dish with aromatic seasoning, no chilli heat. Match a coherent premium culinary editorial series: dark warm brown stone tabletop, soft warm natural window sidelight from upper left, deep realistic shadows, subtle rich natural colour and realistic edible textures. Three-quarter overhead angle. The entire serving vessel must be visible with breathing room on all sides, centred and occupying approximately 70% of frame width. Sophisticated restrained plating and garnish. No people, no hands, no cutlery clutter, no red or green chilli peppers, no text, no logos, no watermark, no collage. Do not crop the plate or bowl. This is illustrative menu inspiration, not documentary chef photography."
+    },
+    {
+      "name": "Coconut Milk–Poached Roasted Prawns",
+      "slug": "fusion-coconut-milk-prawns",
+      "asset": "fusion-coconut-milk-prawns",
+      "source": "output/imagegen/hero-fusion-prawns-wide.png",
+      "note": "Resize-only menu derivatives of the existing hero adaptation. No new image generation. The menu aligns the photograph to the right to preserve the complete bowl."
+    }
+  ]
+}

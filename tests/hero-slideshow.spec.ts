@@ -57,6 +57,11 @@ test('all hero dishes load and manual controls wrap and support keyboard use', a
     await expect(button).toHaveAttribute('aria-pressed', 'true');
     await expect(page.getByRole('button', { name: 'Pause slideshow', exact: true })).toBeVisible();
     await expect(page.locator('.hero-slide-caption')).toContainText(slide.dish);
+    await expect(page.locator('#hero-title')).toHaveAttribute('aria-label', slide.headline.join(' '));
+    await expect(page.locator('.hero-description')).toHaveText(slide.description);
+    await expect(page.getByRole('link', { name: 'Explore the Menu', exact: true })).toHaveAttribute('href', slide.menuTarget);
+    const enquiry = new URL((await page.getByRole('link', { name: 'Enquire on WhatsApp', exact: true }).getAttribute('href'))!);
+    expect(enquiry.searchParams.get('text')).toContain(slide.enquiryContext);
     await page.locator(`.hero-slide img[src$="/${slide.image}.webp"]`).evaluate((img: HTMLImageElement) => img.decode());
     if (slide.dish === 'Croquette') {
       await expect(page.locator('.hero-slide.is-active')).toHaveCSS('opacity', '1');
@@ -71,6 +76,32 @@ test('all hero dishes load and manual controls wrap and support keyboard use', a
   await expect(page.locator('.hero-slide-caption')).toContainText(heroSlides[heroSlides.length - 1].dish);
   await expect(page.locator('.hero-slide.is-active')).toHaveCSS('opacity', '1');
   await expect(page.getByRole('button', { name: 'Play slideshow', exact: true })).toBeVisible();
+});
+
+test('fusion hero opens the relevant menu and every headline fits narrow screens', async ({ page }, testInfo) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  for (const width of [320, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    for (const slide of heroSlides) {
+      await page.getByRole('button', { name: `Show ${slide.region}: ${slide.dish}`, exact: true }).click();
+      await expect(page.getByRole('heading', { level: 1, name: slide.headline.join(' '), exact: true })).toBeVisible();
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      for (const word of await page.locator('#hero-title .motion-word').all()) {
+        await expect(word).toHaveCSS('opacity', '1');
+        await expect(word).toHaveCSS('transform', 'none');
+      }
+    }
+  }
+  await page.setViewportSize(testInfo.project.name === 'mobile' ? { width: 390, height: 844 } : { width: 1440, height: 1000 });
+  const fusion = heroSlides.find(slide => slide.region === 'Fusion')!;
+  await page.getByRole('button', { name: `Show Fusion: ${fusion.dish}`, exact: true }).click();
+  await page.locator('.hero-slide.is-active img').evaluate((image: HTMLImageElement) => image.decode());
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await page.screenshot({ path: `test-results/${testInfo.project.name}-fusion-hero.png`, scale: 'css' });
+  await page.getByRole('link', { name: 'Explore the Menu', exact: true }).click();
+  await expect(page).toHaveURL(/#fusion-menu$/);
+  await expect(page.locator('#fusion-menu')).toHaveAttribute('open', '');
 });
 
 test('reduced motion disables automatic changes and preserves manual selection', async ({ page }) => {

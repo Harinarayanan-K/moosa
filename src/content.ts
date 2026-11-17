@@ -14,6 +14,18 @@ export const biography = {
   role: 'Sous Chef · Deer Restaurant, Prague',
 };
 
+// Footer copy stays here so the closing message can be edited independently.
+export const footerContent = {
+  tagline: 'Made for your table.',
+  description: 'Private dining and personalised menus, inspired by Kerala and flavours from around the world.',
+  prelaunchStatus: 'Coming soon to Prague',
+  launchedStatus: 'Private chef · Prague',
+  prelaunchContactHeading: 'Early enquiries',
+  contactHeading: 'Get in touch',
+  prelaunchContactNote: 'Tell me about a future occasion. We’ll start with your ideas.',
+  contactNote: 'Tell me about your occasion. We’ll start with your ideas.',
+};
+
 
 export { cuisines, dishes, signatures, cuisineCount } from './menu';
 export type { Cuisine, Dish } from './menu';

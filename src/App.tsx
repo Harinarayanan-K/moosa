@@ -11,10 +11,12 @@ import { site } from './config/site';
 import MotionText from './components/MotionText';
 import WhatsAppIcon from './components/WhatsAppIcon';
 import CuisineRibbon from './components/CuisineRibbon';
+import SiteFooter from './components/SiteFooter';
 import useCinematicMotion from './hooks/useCinematicMotion';
 import useHeroSlideshow from './hooks/useHeroSlideshow';
 import { heroSlides } from './hero-slides';
 import { miniBurgers } from './mini-burgers';
+import { fusionMenu } from './fusion-menu';
 
 gsap.registerPlugin(ScrollTrigger);
 const links = [['The Chef', 'the-chef'], ['Menu', 'menu'], ['Experiences', 'experiences'], ['Gallery', 'gallery'], ['Contact', 'contact']];
@@ -57,19 +59,37 @@ function ContactAction({ children, context, email = false, className = '', icon 
   </Dialog.Root>;
 }
 
+function FusionMenuSelection() {
+  return <details className="menu-collection fusion-menu" id="fusion-menu" onToggle={() => ScrollTrigger.refresh()}>
+    <summary>
+      <div><span className="course-label">MILD FUSION · {fusionMenu.length} DISHES</span><h3>Kerala meets Europe</h3></div>
+      <span className="menu-collection-summary-action">Explore the fusion menu<Plus size={19} aria-hidden="true" /></span>
+    </summary>
+    <div className="menu-collection-content">
+      <p className="menu-collection-intro">A gentle meeting of Kerala flavours and European techniques, with coconut milk, cashew cream, curry leaves and warming aromatics.<span>AI-illustrated menu inspiration · {site.launched ? 'Personalised menus on request' : 'Coming soon'}</span></p>
+      <p className="fusion-spice-note">Designed for a mild palate. Share your preferred spice level when enquiring.</p>
+      <div className="menu-collection-grid">{fusionMenu.map(dish => <article className="menu-collection-card fusion-card" data-image={dish.image} key={dish.name}>
+        <div className="menu-image"><img src={asset(dish.image, true)} srcSet={`${asset(dish.image, true)} 640w, ${asset(dish.image)} 1400w`} sizes="(max-width: 600px) 90vw, (max-width: 900px) 45vw, 30vw" alt={dish.alt} width="1400" height="933" loading="lazy" /></div>
+        <div className="menu-card-info"><span className="course-label">{dish.course}</span><h4>{dish.name}</h4><p>{dish.description}</p><p className="fusion-pairing">{dish.pairing}</p></div>
+      </article>)}</div>
+      <ContactAction className="text-link menu-collection-enquiry" context="a mild Kerala–European fusion menu with gentle seasoning">Enquire about the fusion menu</ContactAction>
+    </div>
+  </details>;
+}
+
 function MiniBurgerSelection() {
-  return <details className="mini-burgers" id="mini-burgers" onToggle={() => ScrollTrigger.refresh()}>
+  return <details className="menu-collection mini-burgers" id="mini-burgers" onToggle={() => ScrollTrigger.refresh()}>
     <summary>
       <div><span className="course-label">SMALL BITES · {miniBurgers.length} VARIATIONS</span><h3>The mini burger collection</h3></div>
-      <span className="mini-burger-summary-action">Explore the collection<Plus size={19} aria-hidden="true" /></span>
+      <span className="menu-collection-summary-action">Explore the collection<Plus size={19} aria-hidden="true" /></span>
     </summary>
-    <div className="mini-burger-content">
-      <p className="mini-burger-intro">Global flavours and Czech burger favourites, all in petite brioche buns. A selection to inspire your next gathering.<span>AI-illustrated menu inspiration · {site.launched ? 'Personalised menus on request' : 'Coming soon'}</span></p>
-      <div className="mini-burger-grid">{miniBurgers.map(burger => <article className="mini-burger-card" key={burger.name}>
+    <div className="menu-collection-content mini-burger-content">
+      <p className="menu-collection-intro">Global flavours and Czech burger favourites, all in petite brioche buns. A selection to inspire your next gathering.<span>AI-illustrated menu inspiration · {site.launched ? 'Personalised menus on request' : 'Coming soon'}</span></p>
+      <div className="menu-collection-grid mini-burger-grid">{miniBurgers.map(burger => <article className="menu-collection-card mini-burger-card" key={burger.name}>
         <div className="menu-image"><img src={asset(burger.image, true)} srcSet={`${asset(burger.image, true)} 640w, ${asset(burger.image)} 1400w`} sizes="(max-width: 600px) 90vw, (max-width: 900px) 45vw, 30vw" alt={burger.alt} width="1400" height="933" loading="lazy" /></div>
         <div className="menu-card-info"><span className="course-label">{burger.group === 'Czech menu inspiration' ? 'CZECH-INSPIRED MINI BURGER' : 'MINI BURGER'}</span><h4>{burger.name}</h4><p>{burger.description}</p></div>
       </article>)}</div>
-      <ContactAction className="text-link mini-burger-enquiry" context="the mini burger collection">Enquire about mini burgers</ContactAction>
+      <ContactAction className="text-link menu-collection-enquiry" context="the mini burger collection">Enquire about mini burgers</ContactAction>
     </div>
   </details>;
 }
@@ -111,6 +131,7 @@ function App({ onReplayWelcome }: { onReplayWelcome?: () => void }) {
   const [floatingVisible, setFloatingVisible] = useState(false);
   const reduced = useReducedMotion();
   const hero = useHeroSlideshow(heroElement, reduced);
+  const activeSlide = heroSlides[hero.active];
   const filtered = dishes.filter(dish => cuisine === 'All' || dish.cuisine === cuisine);
   const visibleDishes = cuisine === 'All' && !menuExpanded ? filtered.slice(0, 6) : filtered;
   useCinematicMotion(root, reduced, setSignature);
@@ -173,15 +194,20 @@ function App({ onReplayWelcome }: { onReplayWelcome?: () => void }) {
         <div className="section-shell hero-foreground">
         <div className="hero-copy">
           <div className="hero-reveal"><Eyebrow>MOOSA · PRIVATE CHEF PRAGUE</Eyebrow></div>
-          <h1 id="hero-title" aria-label="A world of flavour. A table of your own."><span className="hero-reveal"><MotionText>A world of flavour.</MotionText></span><span className="hero-reveal gold-italic"><MotionText>A table of your own.</MotionText></span></h1>
+          <h1 id="hero-title" className="hero-changing-copy" aria-label={activeSlide.headline.join(' ')}><span className="hero-reveal hero-title-line"><MotionText>{activeSlide.headline[0]}</MotionText></span><span className="hero-reveal hero-title-line gold-italic"><MotionText>{activeSlide.headline[1]}</MotionText></span></h1>
           <div className="hero-introduction">
-            <p className="hero-description hero-reveal">Personalised dining experiences inspired by Kerala, Indian, Italian, European, and Middle Eastern cuisine.</p>
-            <div className="hero-actions hero-reveal"><a className="button button-gold" href="#menu">Explore the Menu <ArrowUpRight size={17} /></a><ContactAction className="text-link" icon={false}><WhatsAppIcon size={16} /> Enquire on WhatsApp</ContactAction></div>
+            <p className="hero-description hero-reveal hero-changing-copy">{activeSlide.description}</p>
+            <div className="hero-actions hero-reveal"><a className="button button-gold" href={activeSlide.menuTarget} onClick={() => {
+              if (activeSlide.menuTarget === '#fusion-menu') {
+                const collection = document.querySelector<HTMLDetailsElement>('#fusion-menu');
+                if (collection) collection.open = true;
+              }
+            }}>Explore the Menu <ArrowUpRight size={17} /></a><ContactAction className="text-link" context={activeSlide.enquiryContext} icon={false}><WhatsAppIcon size={16} /> Enquire on WhatsApp</ContactAction></div>
             <p className="hero-launch hero-reveal"><span className="status-dot" />{site.launched ? 'Personalised menus on request' : 'Not launched yet · Early enquiries welcome'}</p>
           </div>
         </div>
         <div className="hero-slideshow-controls" role="group" aria-label="Featured dishes slideshow" onKeyDownCapture={event => { if (['Enter', ' '].includes(event.key) && !(event.target as HTMLElement).closest('.hero-slide-pause')) hero.pause(); }}>
-          <div className="hero-slide-caption" aria-live={hero.paused || reduced ? 'polite' : 'off'} aria-atomic="true"><span>{String(hero.active + 1).padStart(2, '0')} / {String(heroSlides.length).padStart(2, '0')} · {heroSlides[hero.active].region}</span><p>{heroSlides[hero.active].dish}</p></div>
+          <div className="hero-slide-caption" aria-live={hero.paused || reduced ? 'polite' : 'off'} aria-atomic="true"><span>{String(hero.active + 1).padStart(2, '0')} / {String(heroSlides.length).padStart(2, '0')} · {activeSlide.region}</span><p>{activeSlide.dish}</p></div>
           <div className="hero-slide-navigation">
             <button type="button" className="hero-slide-arrow" aria-label="Previous dish" onClick={() => hero.select(hero.active - 1)}><ArrowLeft size={17} /></button>
             <div className="hero-slide-dots">{heroSlides.map((slide, index) => <button type="button" key={slide.image} aria-label={`Show ${slide.region}: ${slide.dish}`} aria-pressed={hero.active === index} onClick={() => hero.select(index)}><span /></button>)}</div>
@@ -190,7 +216,7 @@ function App({ onReplayWelcome }: { onReplayWelcome?: () => void }) {
           </div>
         </div>
         <div className="hero-bottom"><span><MapPin size={13} /> BASED IN PRAGUE</span><span>PRIVATE DINING · SPECIAL OCCASIONS · PERSONALISED MENUS</span><a className="hero-chef-link" href="#the-chef">Meet Chef Moosa <ArrowDown size={14} /></a></div>
-        <span className="hero-image-credit">Illustrative dishes · A taste of five culinary worlds</span>
+        <span className="hero-image-credit">Illustrative dishes · Personalised dining inspiration</span>
         </div>
       </section>
 
@@ -219,6 +245,7 @@ function App({ onReplayWelcome }: { onReplayWelcome?: () => void }) {
           setMenuExpanded(value => !value);
           if (menuExpanded) requestAnimationFrame(() => document.getElementById('menu')?.scrollIntoView({ behavior: reduced ? 'instant' : 'smooth', block: 'start' }));
         }}>{menuExpanded ? 'Show less' : site.launched ? 'See full menu' : 'See menu preview'}<ArrowDown className={menuExpanded ? 'menu-toggle-up' : ''} size={17} /></button></div>}
+        <FusionMenuSelection />
         <MiniBurgerSelection />
         <div className="menu-footnote"><div><Check size={17} strokeWidth={1.5} /><span>Personalised menus on request</span></div><ContactAction className="text-link" context={`${cuisine === 'All' ? 'a menu exploring all cuisines' : `the ${cuisine} menu`}`}>Enquire about this menu</ContactAction></div>
       </div></section>
@@ -249,7 +276,7 @@ function App({ onReplayWelcome }: { onReplayWelcome?: () => void }) {
 
       <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="contact-watermark" aria-hidden="true">MOOSA</div><div className="section-shell contact-inner" data-reveal><ChefHat className="contact-hat" size={38} strokeWidth={1} /><Eyebrow>YOUR TABLE. YOUR PEOPLE. YOUR MOMENT.</Eyebrow><h2 id="contact-title"><MotionText>Let’s create an unforgettable</MotionText><br /><em><MotionText>dining experience.</MotionText></em></h2><p>It all starts with a conversation.<br />Tell me what you have in mind, and we’ll take it from there.</p>{!site.launched && <span className="contact-launch-note">We haven’t launched yet. Get in touch for early enquiries about future dining experiences.</span>}<div className="contact-actions"><ContactAction className="button button-gold"><WhatsAppIcon size={18} />Chat on WhatsApp</ContactAction><ContactAction email className="button button-outline"><Mail size={18} strokeWidth={1.5} />Send an Email</ContactAction></div>{!whatsappLink() && !emailLink() && <span className="contact-soon"><span className="status-dot" /> Contact details coming soon</span>}<span className="contact-location"><MapPin size={13} />COMING SOON TO PRAGUE</span></div></section>
     </main>
-    <footer className="site-footer section-shell"><a className="wordmark" href="#home">MOOSA<span>PRIVATE CHEF · PRAGUE</span></a><span>Authentic flavours. International cuisine.</span><div><span>© {new Date().getFullYear()} Chef Moosa</span><a href="#questions">Good to know <ArrowUpRight size={14} /></a><a href={`${import.meta.env.BASE_URL}photo-credits.html`}>Photo credits <ArrowUpRight size={14} /></a>{onReplayWelcome && !reduced && <button type="button" className="welcome-replay" onClick={onReplayWelcome}>Replay welcome <Play size={12} aria-hidden="true" /></button>}<a href="#home" aria-label="Back to top">Back to top <ArrowUpRight size={14} /></a></div></footer>
+    <SiteFooter onReplayWelcome={onReplayWelcome} reduced={reduced} />
     <ContactAction className={`floating-whatsapp ${floatingVisible ? '' : 'floating-hidden'}`} icon={false}><WhatsAppIcon size={24} /><span className="floating-label">{whatsappLink() ? 'Chat on WhatsApp' : 'WhatsApp · Coming soon'}</span></ContactAction>
   </div>;
 }

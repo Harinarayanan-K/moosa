@@ -1,0 +1,15 @@
+{
+  "mode": "built-in image_gen",
+  "reference": "User-attached Coconut Milk–Poached Roasted Prawns image",
+  "note": "AI-assisted wide and portrait adaptations preserve the supplied dish and plating; the source attachment was provided in chat.",
+  "entries": [
+    {
+      "slug": "hero-fusion-prawns-wide",
+      "prompt": "Use case: compositing / precise-object-edit. Asset type: wide 16:9 hero photograph for an existing luxury private chef website. Input image 1 is the user's exact Coconut Milk–Poached Roasted Prawns photograph and is the required food and plating reference. Adapt this image for a wide hero by extending the same warm brown stone tabletop, reframing the SAME complete charcoal ceramic bowl to the right-hand half, preserving its three-quarter overhead angle and the SAME six roasted golden-orange prawns, pale coconut-milk sauce, glossy curry leaves, toasted coconut ribbons, tiny herbs and restrained red garnish. Keep the food photographic appearance, colours and arrangement as close as possible to the input. Show the entire bowl with breathing room; do not zoom or crop the food. The left 45% should be natural dark warm stone tabletop for website text, not a flat black panel or another background. Soft warm sidelight from upper left, cinematic deep shadows, premium editorial realism. Horizontal 16:9 composition, 1600 by 900 style framing. No people, hands, cutlery, typography, logos or watermark. Do not replace with an invented dish; preserve the supplied dish and plating."
+    },
+    {
+      "slug": "hero-fusion-prawns-mobile",
+      "prompt": "Use case: compositing / precise-object-edit. Asset type: portrait 9:16 mobile hero photograph for an existing luxury private chef website. Input image 1 is the user's exact Coconut Milk–Poached Roasted Prawns photograph and is the required food and plating reference. Extend and reframe this same scene for portrait composition: retain the SAME complete charcoal ceramic bowl, six golden-orange roasted prawns, pale coconut-milk sauce, glossy curry leaves, toasted coconut ribbons, tiny herbs and restrained red garnish. Preserve the input's three-quarter overhead angle, photographic textures, colours and plating arrangement as closely as possible. Place the complete bowl centred in the lower half, occupying approximately 88% of image width, with its upper edge around 43% down the canvas and its lower edge near 86%. Use the same warm brown stone tabletop continuously from top to bottom. The upper 40% is empty natural dark stone for headline and buttons, with no artificial panel or separator. Warm sidelight from upper left, cinematic deep shadows, premium realistic food imagery. Vertical 9:16 composition, 900 by 1600 style framing. No crop or zoom of the dish, no people, hands, words, logos or watermark. Do not invent a different dish."
+    }
+  ]
+}

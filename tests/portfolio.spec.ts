@@ -1,6 +1,7 @@
 import { test, expect } from './fixtures';
 import { createEmailLink, createWhatsAppLink, enquiryMessage } from '../src/config/contact';
 import { cuisines, dishes, signatures } from '../src/menu';
+import { heroSlides } from '../src/hero-slides';
 import { statSync } from 'node:fs';
 import { resolve } from 'node:path';
 
@@ -81,7 +82,7 @@ test('all cuisine filters work and preserve the correct results', async ({ page 
 
 test('lightbox wraps, supports buttons and keyboard, and returns focus', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('#home .hero-backdrop img')).toHaveCount(5);
+  await expect(page.locator('#home .hero-backdrop img')).toHaveCount(heroSlides.length);
   await expect(page.locator('img[src$="/chef.webp"]')).toHaveCount(1);
   const trigger = page.getByRole('button', { name: 'Open image 1: The art of the plate' });
   await trigger.click();

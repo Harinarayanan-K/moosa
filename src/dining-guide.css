@@ -63,5 +63,5 @@
   .dining-question summary { min-height: 76px; padding-block: 22px; font-size: 12px; }
   .question-answer { padding-right: 5px; }
   .question-answer p { font-size: 12px; }
-  .site-footer > div { flex-wrap: wrap; gap: 16px; }
+
 }

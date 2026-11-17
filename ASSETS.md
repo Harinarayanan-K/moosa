@@ -12,6 +12,20 @@ Portrait prompt:
 
 ## Illustrative culinary images
 
+### Fusion prawn hero
+
+The user-supplied “Coconut Milk–Poached Roasted Prawns” image is the plating reference for the hero's second slide, labelled Fusion. Two AI-assisted framing adaptations were created with the built-in `image_gen` tool using that chat attachment: a complete bowl on the right of a 16:9 desktop scene, and a large complete bowl below the text area in a 9:16 mobile scene. Both preserve the six roasted prawns, pale coconut-milk sauce, curry leaves, toasted coconut ribbons and warm stone setting. They are adaptations of the supplied image, rather than unchanged copies of the attachment.
+
+Publishable files are `public/images/hero-fusion-prawns-wide.webp` and `hero-fusion-prawns-mobile.webp`, with matching `-small.webp` variants. Generated PNGs are retained under `output/imagegen/hero-fusion-prawns-*.png`; final prompts and source notes are in `output/imagegen/hero-fusion-prawns-prompts.json`. Refresh the derivatives with `node scripts/optimise-hero-assets.mjs fusion-prawns` and `node scripts/optimise-mobile-hero-assets.mjs fusion-prawns`. The active hero now has six slides; the five core cuisine categories remain unchanged.
+
+### Mild Kerala–European fusion menu
+
+Five original illustrative dishes have matching images created with the built-in `image_gen` tool: Cauliflower & Coconut Velouté, Pan-Seared Cod & Coconut Moilee, Chicken Roulade & Cashew Cream, Pumpkin Gnocchi & Curry-Leaf Butter, and Tender Coconut Panna Cotta. They share the menu's warm dark stone, soft side lighting and fully framed plates, with no chilli garnish. These are proposed fusion ideas, not a launched or fixed menu and not photographs of Moosa's own food.
+
+Final prompts and source notes are in `output/imagegen/fusion-menu-prompts.json`. Original PNGs remain at `output/imagegen/fusion-*.png`; public WebP derivatives are `public/images/fusion-*.webp` with matching `-small.webp` companions, created at 1400 and 640 pixels wide without cropping. `node scripts/optimise-menu-assets.mjs` handles these with the other menu collections, or accepts individual fusion slugs. Dish copy and pairing notes are editable in `src/fusion-menu.ts`.
+
+The fusion menu also includes Coconut Milk–Poached Roasted Prawns as its sixth dish. Its `public/images/fusion-coconut-milk-prawns.webp` and `-small.webp` files are resized derivatives of the existing wide hero adaptation; no new image was generated. The optimisation manifest points to the same hero PNG, and the menu positions the image to retain the complete bowl.
+
 ### Current menu image series
 
 The additional mini burger collection has nine bespoke images generated with the built-in `image_gen` tool: beef and cheddar, crispy chicken, spiced lamb, crispy fish, portobello with pesto, smash cheeseburger, smoky bacon BBQ, truffle beef, and Smažák fried cheese. Each shows two petite sliders on a fully framed charcoal plate against the same warm stone background as the menu series. Files are `public/images/mini-burger-*.webp` with `-small.webp` companions; originals are retained as `output/imagegen/mini-burger-*.png`. Final prompts are in `output/imagegen/mini-burger-prompts.json`, with names, fillings and alternative text in `src/mini-burgers.ts`. The menu optimisation helper processes both image collections. These are AI menu illustrations, not photographs of Moosa's own work.

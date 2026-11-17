@@ -24,13 +24,23 @@ Reviewed 17 November 2026. This is an editorial assessment of official websites,
 
 The existing colour palette remains. The hero uses a five-dish food slideshow with pause/play and manual controls. The former scroll-pinned sequence remains removed, and Moosa's portrait appears once, in the chef section. Image motion uses restrained reveals, parallax and signature-dish crossfades with a reduced-motion alternative. The 25 selected illustrative dishes have photographs, with exactly five per cuisine. Six appear initially; “See menu preview” and “Show less” control the visible selection. Full menus are marked coming soon. Public photo credits identify the additional source images and their licences. All information is static; there are no forms, booking tools, trackers, backend services or runtime API requests.
 
-## Highest-value next additions, when real information is supplied
+## Additional menu and footer reviews
+
+### Footer content and organisation
+
+Reviewed [Core by Clare Smyth](https://corebyclaresmyth.com/) and [Ikoyi](https://ikoyilondon.com/) for how they organise closing information. Core groups its contact information and sitemap; Ikoyi closes with concise location and contact details. Moosa's footer uses a short original introduction (“Made for your table.”), grouped exploration links, direct WhatsApp and email enquiries, and a separate row for FAQs, image credits, replay and returning to the top. Its coming-soon status remains explicit. No restaurant opening hours, physical street address, reservation service, awards or legal policies have been inferred from those references. Footer wording is editable in `footerContent` in `src/content.ts`.
 
 ### Czech mini burger references
 
 The mini burger collection also includes petite interpretations of styles found on current Czech restaurant menus. [Burgerman](https://www.burgerman.cz/en/) lists smash cheeseburger and truffle variants; [The PUB Praha 2](https://www.thepub.cz/praha/?lng=en) lists a bacon-and-barbecue beef burger; [Amici](https://www.amici.cz/brno-bystrc/burgery/smazak/) lists a Smažák fried-cheese burger. These references informed the added smash cheeseburger, smoky bacon BBQ, truffle beef and Smažák miniatures. This is menu inspiration, not a popularity ranking, partnership or claim that these recipes originated in Czechia. Moosa's names, descriptions and AI images are independently prepared, with no restaurant prices or brands used in the public menu.
 
-### Remaining content opportunities
+### Mild Kerala–European fusion
+
+[Sriram Aylur's seafood moilee](https://www.greatbritishchefs.com/recipes/seafood-moilee-recipe) provides a useful reference for gently spiced coconut milk with seafood, ginger and curry leaves. [Rachel Allen's coconut and cardamom panna cotta](https://www.rte.ie/lifestyle/recipes/2012/0410/745064-coconut-and-cardamom-pannacotta/) demonstrates a coconut-milk, cream and sweet-spice dessert pairing. These informed the flavour direction, not a copied recipe or a chef endorsement.
+
+Moosa's six illustrative fusion ideas connect European forms with Kerala-inspired aromatics: a cauliflower–coconut velouté; coconut milk–poached roasted prawns; seared cod and fondant potato with moilee-inspired sauce; chicken roulade with gentle cashew cream; pumpkin gnocchi with curry-leaf brown butter; and tender coconut panna cotta with cardamom and mango. The coconut, cashew and butter preparations provide different textures and keep the menu varied. The menu is designed around mild seasoning, with spice preferences invited in the enquiry. It remains a coming-soon concept. These are new creative menu proposals, rather than verified examples of Moosa's previously served dishes.
+
+## Remaining content opportunities
 
 - **Contact details:** the supplied WhatsApp number and email address are configured in `src/config/contact.ts`.
 - **Original food photography:** replace the illustrative stock and generated dishes with Moosa's own work. Obtain the original standalone portrait to replace the AI-assisted poster reconstruction when available. Sources are recorded in `ASSETS.md`.

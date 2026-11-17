@@ -33,6 +33,9 @@ export default function useHeroSlideshow(root: RefObject<HTMLElement | null>, re
       if (oldIndex !== active) {
         gsap.fromTo(frames[oldIndex], { opacity: 1, xPercent: 0 }, { opacity: 0, xPercent: -4, duration: 1.1, ease: 'power2.inOut', clearProps: 'opacity,transform' });
         gsap.fromTo(frames[active], { opacity: 0, xPercent: 4 }, { opacity: 1, xPercent: 0, duration: 1.1, ease: 'power2.inOut', clearProps: 'opacity,transform' });
+        gsap.killTweensOf(root.current?.querySelectorAll('h1 .motion-word') ?? []);
+        gsap.set(root.current?.querySelectorAll('h1 .motion-word') ?? [], { clearProps: 'opacity,transform' });
+        gsap.fromTo('.hero-changing-copy', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .65, stagger: .08, ease: 'power2.out', overwrite: 'auto', clearProps: 'opacity,transform' });
       }
     }, root);
     return () => context.revert();
