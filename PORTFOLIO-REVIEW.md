@@ -26,6 +26,12 @@ The existing colour palette remains. The hero uses a five-dish food slideshow wi
 
 ## Highest-value next additions, when real information is supplied
 
+### Czech mini burger references
+
+The mini burger collection also includes petite interpretations of styles found on current Czech restaurant menus. [Burgerman](https://www.burgerman.cz/en/) lists smash cheeseburger and truffle variants; [The PUB Praha 2](https://www.thepub.cz/praha/?lng=en) lists a bacon-and-barbecue beef burger; [Amici](https://www.amici.cz/brno-bystrc/burgery/smazak/) lists a Smažák fried-cheese burger. These references informed the added smash cheeseburger, smoky bacon BBQ, truffle beef and Smažák miniatures. This is menu inspiration, not a popularity ranking, partnership or claim that these recipes originated in Czechia. Moosa's names, descriptions and AI images are independently prepared, with no restaurant prices or brands used in the public menu.
+
+### Remaining content opportunities
+
 - **Contact details:** the supplied WhatsApp number and email address are configured in `src/config/contact.ts`.
 - **Original food photography:** replace the illustrative stock and generated dishes with Moosa's own work. Obtain the original standalone portrait to replace the AI-assisted poster reconstruction when available. Sources are recorded in `ASSETS.md`.
 - **Confirmed service details:** define geographic coverage, guest limits, kitchen needs, staffing, inclusions and cancellation terms before publishing any such commitments.

@@ -12,10 +12,38 @@
 .menu-cuisine-label { color: #b9a78a; font-size: 8px; letter-spacing: .6px; }
 .menu-card-text h3 { font-size: 26px; line-height: 1.15; margin-block: 14px 11px; }
 .menu-card-text p { font-size: 11px; max-width: 100%; line-height: 1.9; }
+.mini-burgers { margin-top: 38px; border-block: 1px solid var(--line); }
+.mini-burgers > summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 25px 0; cursor: pointer; list-style: none; }
+.mini-burgers > summary::-webkit-details-marker { display: none; }
+.mini-burgers > summary::marker { content: ''; }
+.mini-burgers h3 { font-family: var(--serif); color: var(--ivory); font-size: 32px; line-height: 1.2; margin-top: 9px; }
+.mini-burger-summary-action { display: flex; align-items: center; gap: 20px; color: var(--gold); font-size: 10px; }
+.mini-burger-summary-action svg { flex-shrink: 0; transition: transform .25s; }
+.mini-burgers[open] .mini-burger-summary-action svg { transform: rotate(45deg); }
+.mini-burger-content { padding: 4px 0 30px; }
+.mini-burgers[open] .mini-burger-content { animation: mini-burgers-enter .35s ease-out; }
+.mini-burger-intro { color: var(--stone); font-size: 12px; line-height: 1.9; margin-bottom: 27px; max-width: 540px; }
+.mini-burger-intro > span { display: block; margin-top: 9px; color: #c1a67f; font-size: 9px; letter-spacing: .5px; }
+.mini-burger-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 25px; }
+.mini-burger-grid .menu-image { aspect-ratio: 3 / 2; }
+.mini-burger-grid .menu-image > img { filter: none; }
+.mini-burger-card { min-width: 0; }
+.mini-burger-card h4 { font-family: var(--serif); color: var(--ivory); font-size: 28px; line-height: 1.15; margin: 9px 0 10px; }
+.mini-burger-card p { color: var(--stone); font-size: 11px; line-height: 1.9; }
+.mini-burger-enquiry { margin-top: 30px; }
+@keyframes mini-burgers-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @media (max-width: 899px) {
+  .mini-burger-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .menu-dish-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 25px; }
 }
 @media (max-width: 600px) {
+  .mini-burgers > summary { gap: 14px; }
+  .mini-burgers h3 { font-size: 27px; }
+  .mini-burger-summary-action { font-size: 0; gap: 0; }
+  .mini-burger-summary-action svg { width: 22px; height: 22px; }
+  .mini-burger-grid { grid-template-columns: 1fr; }
+  .mini-burger-card h4 { font-size: 30px; }
+  .mini-burger-intro { font-size: 11px; }
   .menu-expand { padding-top: 28px; }
   .menu-expand > p { font-size: 10px; max-width: 290px; margin-inline: auto; }
   .site-footer > div { flex-wrap: wrap; gap: 14px; }
@@ -24,4 +52,8 @@
   .menu-card-text h3 { font-size: 29px; }
   .menu-card-text p { font-size: 12px; }
   .menu-cuisine-label { font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mini-burgers[open] .mini-burger-content { animation: none; }
+  .mini-burger-summary-action svg { transition: none; }
 }

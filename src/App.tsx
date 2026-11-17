@@ -14,6 +14,7 @@ import CuisineRibbon from './components/CuisineRibbon';
 import useCinematicMotion from './hooks/useCinematicMotion';
 import useHeroSlideshow from './hooks/useHeroSlideshow';
 import { heroSlides } from './hero-slides';
+import { miniBurgers } from './mini-burgers';
 
 gsap.registerPlugin(ScrollTrigger);
 const links = [['The Chef', 'the-chef'], ['Menu', 'menu'], ['Experiences', 'experiences'], ['Gallery', 'gallery'], ['Contact', 'contact']];
@@ -54,6 +55,23 @@ function ContactAction({ children, context, email = false, className = '', icon 
       <Dialog.Close className="button button-gold mt-8">Back to exploring <ArrowRight size={17} /></Dialog.Close>
     </Dialog.Content></Dialog.Portal>
   </Dialog.Root>;
+}
+
+function MiniBurgerSelection() {
+  return <details className="mini-burgers" id="mini-burgers" onToggle={() => ScrollTrigger.refresh()}>
+    <summary>
+      <div><span className="course-label">SMALL BITES · {miniBurgers.length} VARIATIONS</span><h3>The mini burger collection</h3></div>
+      <span className="mini-burger-summary-action">Explore the collection<Plus size={19} aria-hidden="true" /></span>
+    </summary>
+    <div className="mini-burger-content">
+      <p className="mini-burger-intro">Global flavours and Czech burger favourites, all in petite brioche buns. A selection to inspire your next gathering.<span>AI-illustrated menu inspiration · {site.launched ? 'Personalised menus on request' : 'Coming soon'}</span></p>
+      <div className="mini-burger-grid">{miniBurgers.map(burger => <article className="mini-burger-card" key={burger.name}>
+        <div className="menu-image"><img src={asset(burger.image, true)} srcSet={`${asset(burger.image, true)} 640w, ${asset(burger.image)} 1400w`} sizes="(max-width: 600px) 90vw, (max-width: 900px) 45vw, 30vw" alt={burger.alt} width="1400" height="933" loading="lazy" /></div>
+        <div className="menu-card-info"><span className="course-label">{burger.group === 'Czech menu inspiration' ? 'CZECH-INSPIRED MINI BURGER' : 'MINI BURGER'}</span><h4>{burger.name}</h4><p>{burger.description}</p></div>
+      </article>)}</div>
+      <ContactAction className="text-link mini-burger-enquiry" context="the mini burger collection">Enquire about mini burgers</ContactAction>
+    </div>
+  </details>;
 }
 
 function Navigation({ reduced }: { reduced: boolean }) {
@@ -201,6 +219,7 @@ function App({ onReplayWelcome }: { onReplayWelcome?: () => void }) {
           setMenuExpanded(value => !value);
           if (menuExpanded) requestAnimationFrame(() => document.getElementById('menu')?.scrollIntoView({ behavior: reduced ? 'instant' : 'smooth', block: 'start' }));
         }}>{menuExpanded ? 'Show less' : site.launched ? 'See full menu' : 'See menu preview'}<ArrowDown className={menuExpanded ? 'menu-toggle-up' : ''} size={17} /></button></div>}
+        <MiniBurgerSelection />
         <div className="menu-footnote"><div><Check size={17} strokeWidth={1.5} /><span>Personalised menus on request</span></div><ContactAction className="text-link" context={`${cuisine === 'All' ? 'a menu exploring all cuisines' : `the ${cuisine} menu`}`}>Enquire about this menu</ContactAction></div>
       </div></section>
 

@@ -1,0 +1,87 @@
+{
+  "mode": "built-in image_gen",
+  "created": "2026-11-17",
+  "entries": [
+    {
+      "name": "Beef & Cheddar Mini Burger",
+      "slug": "mini-burger-beef-cheddar",
+      "description": "Beef patty, melted cheddar, caramelised onion and a little Dijon mayonnaise in a soft brioche bun.",
+      "subject": "two petite beef and cheddar mini slider burgers, each with a browned beef patty, neatly melted golden cheddar, caramelised onions, green baby lettuce and a little pale Dijon mayonnaise in glossy golden brioche mini buns",
+      "prompt": "Use case: photorealistic-natural. Asset type: luxury private chef menu illustration, landscape 3:2. Primary request: two petite beef and cheddar mini slider burgers, each with a browned beef patty, neatly melted golden cheddar, caramelised onions, green baby lettuce and a little pale Dijon mayonnaise in glossy golden brioche mini buns. These are small canapé-sized sliders, approximately five centimetres wide, NOT full-size tall hamburgers. Two sliders elegantly spaced on one handmade charcoal ceramic plate, the entire plate visible with generous breathing room, centred and occupying around 70% of frame width. One bun slightly angled so the different filling is clearly visible. Match a premium food photography series: dark warm brown stone tabletop, soft warm natural window light from upper left, deep realistic shadows, subtle rich colour, refined restaurant presentation. Three-quarter overhead camera, shallow natural depth of field, appetising edible textures. Keep proportions petite, neat and believable. No fries, no oversized burger stacks, no messy dripping sauce, no people, no hands, no text, no logos, no watermark, no collage. This is AI menu inspiration, not documentary chef photography.",
+      "asset": "mini-burger-beef-cheddar"
+    },
+    {
+      "name": "Crispy Chicken Mini Burger",
+      "slug": "mini-burger-crispy-chicken",
+      "description": "Crisp chicken, red-cabbage slaw, pickles and a lightly spiced mayonnaise in a mini brioche bun.",
+      "subject": "two petite crispy chicken mini slider burgers, each with crunchy golden breaded chicken, a restrained purple cabbage slaw, green pickle slices and a little spicy mayonnaise in glossy golden brioche mini buns",
+      "prompt": "Use case: photorealistic-natural. Asset type: luxury private chef menu illustration, landscape 3:2. Primary request: two petite crispy chicken mini slider burgers, each with crunchy golden breaded chicken, a restrained purple cabbage slaw, green pickle slices and a little spicy mayonnaise in glossy golden brioche mini buns. These are small canapé-sized sliders, approximately five centimetres wide, NOT full-size tall hamburgers. Two sliders elegantly spaced on one handmade charcoal ceramic plate, the entire plate visible with generous breathing room, centred and occupying around 70% of frame width. One bun slightly angled so the different filling is clearly visible. Match a premium food photography series: dark warm brown stone tabletop, soft warm natural window light from upper left, deep realistic shadows, subtle rich colour, refined restaurant presentation. Three-quarter overhead camera, shallow natural depth of field, appetising edible textures. Keep proportions petite, neat and believable. No fries, no oversized burger stacks, no messy dripping sauce, no people, no hands, no text, no logos, no watermark, no collage. This is AI menu inspiration, not documentary chef photography.",
+      "asset": "mini-burger-crispy-chicken"
+    },
+    {
+      "name": "Spiced Lamb Mini Burger",
+      "slug": "mini-burger-spiced-lamb",
+      "description": "Spiced lamb patty, harissa, pickled red onion and cool mint yoghurt in a soft mini bun.",
+      "subject": "two petite spiced lamb mini slider burgers, each with a chargrilled lamb patty, a thin harissa-red sauce accent, vivid pink pickled onion and a little mint yoghurt in glossy golden brioche mini buns",
+      "prompt": "Use case: photorealistic-natural. Asset type: luxury private chef menu illustration, landscape 3:2. Primary request: two petite spiced lamb mini slider burgers, each with a chargrilled lamb patty, a thin harissa-red sauce accent, vivid pink pickled onion and a little mint yoghurt in glossy golden brioche mini buns. These are small canapé-sized sliders, approximately five centimetres wide, NOT full-size tall hamburgers. Two sliders elegantly spaced on one handmade charcoal ceramic plate, the entire plate visible with generous breathing room, centred and occupying around 70% of frame width. One bun slightly angled so the different filling is clearly visible. Match a premium food photography series: dark warm brown stone tabletop, soft warm natural window light from upper left, deep realistic shadows, subtle rich colour, refined restaurant presentation. Three-quarter overhead camera, shallow natural depth of field, appetising edible textures. Keep proportions petite, neat and believable. No fries, no oversized burger stacks, no messy dripping sauce, no people, no hands, no text, no logos, no watermark, no collage. This is AI menu inspiration, not documentary chef photography.",
+      "asset": "mini-burger-spiced-lamb"
+    },
+    {
+      "name": "Crispy Fish Mini Burger",
+      "slug": "mini-burger-crispy-fish",
+      "description": "Golden fish, lemon-dill tartare sauce and crisp lettuce in a delicate mini brioche bun.",
+      "subject": "two petite crispy fish mini slider burgers, each with a golden crumbed white fish fillet with visible flaky interior, pale lemon-dill tartare sauce and crisp green lettuce in glossy golden brioche mini buns",
+      "prompt": "Use case: photorealistic-natural. Asset type: luxury private chef menu illustration, landscape 3:2. Primary request: two petite crispy fish mini slider burgers, each with a golden crumbed white fish fillet with visible flaky interior, pale lemon-dill tartare sauce and crisp green lettuce in glossy golden brioche mini buns. These are small canapé-sized sliders, approximately five centimetres wide, NOT full-size tall hamburgers. Two sliders elegantly spaced on one handmade charcoal ceramic plate, the entire plate visible with generous breathing room, centred and occupying around 70% of frame width. One bun slightly angled so the different filling is clearly visible. Match a premium food photography series: dark warm brown stone tabletop, soft warm natural window light from upper left, deep realistic shadows, subtle rich colour, refined restaurant presentation. Three-quarter overhead camera, shallow natural depth of field, appetising edible textures. Keep proportions petite, neat and believable. No fries, no oversized burger stacks, no messy dripping sauce, no people, no hands, no text, no logos, no watermark, no collage. This is AI menu inspiration, not documentary chef photography.",
+      "asset": "mini-burger-crispy-fish"
+    },
+    {
+      "name": "Portobello & Pesto Mini Burger",
+      "slug": "mini-burger-portobello-pesto",
+      "description": "Roasted portobello mushroom, mozzarella, basil pesto and fresh rocket in a soft mini bun.",
+      "subject": "two petite vegetarian portobello and pesto mini slider burgers, each with a roasted dark portobello mushroom cap, soft white mozzarella, vivid green basil pesto and fresh rocket in glossy golden brioche mini buns",
+      "prompt": "Use case: photorealistic-natural. Asset type: luxury private chef menu illustration, landscape 3:2. Primary request: two petite vegetarian portobello and pesto mini slider burgers, each with a roasted dark portobello mushroom cap, soft white mozzarella, vivid green basil pesto and fresh rocket in glossy golden brioche mini buns. These are small canapé-sized sliders, approximately five centimetres wide, NOT full-size tall hamburgers. Two sliders elegantly spaced on one handmade charcoal ceramic plate, the entire plate visible with generous breathing room, centred and occupying around 70% of frame width. One bun slightly angled so the different filling is clearly visible. Match a premium food photography series: dark warm brown stone tabletop, soft warm natural window light from upper left, deep realistic shadows, subtle rich colour, refined restaurant presentation. Three-quarter overhead camera, shallow natural depth of field, appetising edible textures. Keep proportions petite, neat and believable. No fries, no oversized burger stacks, no messy dripping sauce, no people, no hands, no text, no logos, no watermark, no collage. This is AI menu inspiration, not documentary chef photography.",
+      "asset": "mini-burger-portobello-pesto"
+    },
+    {
+      "name": "Smash Cheeseburger Mini",
+      "slug": "mini-burger-smash-cheeseburger",
+      "description": "Thin smashed beef patty, melted cheddar, pickles, finely sliced onion and mustard in a petite brioche bun.",
+      "subject": "two petite smash cheeseburger sliders, each with a thin browned beef patty with delicate lacy crisp edges, melted golden cheddar, sliced green pickles, finely sliced onion and a restrained yellow mustard accent",
+      "asset": "mini-burger-smash-cheeseburger",
+      "group": "Czech menu inspiration",
+      "prompt": "Use case: photorealistic-natural. Asset type: luxury private chef menu illustration, landscape 3:2. Primary request: two petite smash cheeseburger sliders, each with a thin browned beef patty with delicate lacy crisp edges, melted golden cheddar, sliced green pickles, finely sliced onion and a restrained yellow mustard accent, in glossy golden brioche mini buns. These are small canapé-sized sliders, approximately five centimetres wide, NOT full-size tall hamburgers. Two sliders elegantly spaced on one handmade charcoal ceramic plate, the entire plate visible with generous breathing room, centred and occupying around 70% of frame width. One bun slightly angled so the filling is clearly visible. Match a premium food photography series: dark warm brown stone tabletop, soft warm natural window light from upper left, deep realistic shadows, subtle rich colour, refined restaurant presentation. Three-quarter overhead camera, shallow natural depth of field, appetising edible textures. Keep proportions petite, neat and believable. No fries, no oversized burger stacks, no messy dripping sauce, no people, no hands, no text, no logos, no watermark, no collage. This is AI menu inspiration, not documentary chef photography."
+    },
+    {
+      "name": "Smoky Bacon BBQ Mini Burger",
+      "slug": "mini-burger-bacon-bbq",
+      "description": "Beef patty, crisp bacon, cheddar, pickles and a smoky barbecue sauce in a soft mini bun.",
+      "subject": "two petite bacon BBQ beef sliders, each with a seared beef patty, clearly visible crisp reddish-brown bacon strips, melted cheddar, sliced pickle and restrained glossy dark barbecue sauce",
+      "asset": "mini-burger-bacon-bbq",
+      "group": "Czech menu inspiration",
+      "prompt": "Use case: photorealistic-natural. Asset type: luxury private chef menu illustration, landscape 3:2. Primary request: two petite bacon BBQ beef sliders, each with a seared beef patty, clearly visible crisp reddish-brown bacon strips, melted cheddar, sliced pickle and restrained glossy dark barbecue sauce, in glossy golden brioche mini buns. These are small canapé-sized sliders, approximately five centimetres wide, NOT full-size tall hamburgers. Two sliders elegantly spaced on one handmade charcoal ceramic plate, the entire plate visible with generous breathing room, centred and occupying around 70% of frame width. One bun slightly angled so the filling is clearly visible. Match a premium food photography series: dark warm brown stone tabletop, soft warm natural window light from upper left, deep realistic shadows, subtle rich colour, refined restaurant presentation. Three-quarter overhead camera, shallow natural depth of field, appetising edible textures. Keep proportions petite, neat and believable. No fries, no oversized burger stacks, no messy dripping sauce, no people, no hands, no text, no logos, no watermark, no collage. This is AI menu inspiration, not documentary chef photography."
+    },
+    {
+      "name": "Truffle Beef Mini Burger",
+      "slug": "mini-burger-truffle-beef",
+      "description": "Beef patty, sautéed mushrooms, cheddar, rocket and a delicate truffle mayonnaise in a petite brioche bun.",
+      "subject": "two petite truffle beef sliders, each with a browned beef patty, a neat layer of sautéed brown mushrooms, golden melted cheddar, a little green rocket and ivory truffle mayonnaise",
+      "asset": "mini-burger-truffle-beef",
+      "group": "Czech menu inspiration",
+      "prompt": "Use case: photorealistic-natural. Asset type: luxury private chef menu illustration, landscape 3:2. Primary request: two petite truffle beef sliders, each with a browned beef patty, a neat layer of sautéed brown mushrooms, golden melted cheddar, a little green rocket and ivory truffle mayonnaise, in glossy golden brioche mini buns. These are small canapé-sized sliders, approximately five centimetres wide, NOT full-size tall hamburgers. Two sliders elegantly spaced on one handmade charcoal ceramic plate, the entire plate visible with generous breathing room, centred and occupying around 70% of frame width. One bun slightly angled so the filling is clearly visible. Match a premium food photography series: dark warm brown stone tabletop, soft warm natural window light from upper left, deep realistic shadows, subtle rich colour, refined restaurant presentation. Three-quarter overhead camera, shallow natural depth of field, appetising edible textures. Keep proportions petite, neat and believable. No fries, no oversized burger stacks, no messy dripping sauce, no people, no hands, no text, no logos, no watermark, no collage. This is AI menu inspiration, not documentary chef photography."
+    },
+    {
+      "name": "Smažák Mini Burger",
+      "slug": "mini-burger-smazak",
+      "description": "Crisp fried cheese, lettuce, tomato and tartare sauce in a soft mini bun, inspired by the Czech Smažák.",
+      "subject": "two petite Czech Smažák fried-cheese sliders, each with a thick golden breadcrumb-crusted cheese patty, soft pale melted cheese visible along one cut edge, crisp green lettuce, a thin red tomato slice and pale tartare sauce; no meat",
+      "asset": "mini-burger-smazak",
+      "group": "Czech menu inspiration",
+      "prompt": "Use case: photorealistic-natural. Asset type: luxury private chef menu illustration, landscape 3:2. Primary request: two petite Czech Smažák fried-cheese sliders, each with a thick golden breadcrumb-crusted cheese patty, soft pale melted cheese visible along one cut edge, crisp green lettuce, a thin red tomato slice and pale tartare sauce; no meat, in glossy golden brioche mini buns. These are small canapé-sized sliders, approximately five centimetres wide, NOT full-size tall hamburgers. Two sliders elegantly spaced on one handmade charcoal ceramic plate, the entire plate visible with generous breathing room, centred and occupying around 70% of frame width. One bun slightly angled so the filling is clearly visible. Match a premium food photography series: dark warm brown stone tabletop, soft warm natural window light from upper left, deep realistic shadows, subtle rich colour, refined restaurant presentation. Three-quarter overhead camera, shallow natural depth of field, appetising edible textures. Keep proportions petite, neat and believable. No fries, no oversized burger stacks, no messy dripping sauce, no people, no hands, no text, no logos, no watermark, no collage. This is AI menu inspiration, not documentary chef photography."
+    }
+  ],
+  "czech_menu_references": [
+    "https://www.burgerman.cz/en/",
+    "https://www.thepub.cz/praha/?lng=en",
+    "https://www.amici.cz/brno-bystrc/burgery/smazak/"
+  ]
+}
