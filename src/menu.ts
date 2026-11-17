@@ -1,6 +1,8 @@
 // Illustrative menu ideas, not a fixed offering. No prices or availability are implied.
 import sourcedPhotos from './menu-photos.json' with { type: 'json' };
+import generatedPhotos from './menu-premium-images.json' with { type: 'json' };
 const menuPhotos: Record<string, string> = sourcedPhotos;
+const premiumMenuPhotos: Record<string, { image: string; alt: string }> = generatedPhotos;
 export const cuisines = ['All', 'Kerala', 'Indian', 'Italian', 'European', 'Middle Eastern'] as const;
 export type Cuisine = typeof cuisines[number];
 export type Dish = {
@@ -88,13 +90,23 @@ export const allMenuIdeas: readonly Dish[] = [
 // The public coming-soon preview: exactly five major dishes per cuisine.
 // Other ideas remain editable above for a future full menu.
 const previewDishNames = new Set([
-  'Kerala Fish Moilee', 'Appam & Vegetable Stew', 'Beef Ularthiyathu', 'Karimeen Pollichathu', 'Thalassery Chicken Biryani',
+  'Malabar Prawn Curry', 'Appam & Vegetable Stew', 'Beef Ularthiyathu', 'Karimeen Pollichathu', 'Thalassery Chicken Biryani',
   'Chicken Biryani', 'Butter Chicken', 'Tandoori Chicken', 'Palak Paneer', 'Dal Makhani',
-  'Wild Mushroom Ravioli', 'Spaghetti Carbonara', 'Lasagna al Forno', 'Pizza Margherita', 'Tiramisu',
+  'Risotto ai Funghi', 'Spaghetti Carbonara', 'Lasagna al Forno', 'Pizza Margherita', 'Tiramisu',
   'Herb-Roasted Sea Bass', 'Croquette', 'Beef Bourguignon', 'Beef Wellington', 'Crème Brûlée',
-  'Chargrilled Lamb Kofta', 'Chicken Shawarma', 'Falafel', 'Hummus', 'Kunafa',
+  'Lamb Mandi', 'Chicken Shawarma', 'Falafel', 'Hummus', 'Kunafa',
 ]);
-export const dishes: readonly Dish[] = allMenuIdeas.filter(dish => previewDishNames.has(dish.name));
-
 export const signatures = [featuredDishes[0], featuredDishes[2], featuredDishes[4]];
+const signatureNames = new Set<string>(signatures.map(dish => dish.name));
+// The compact preview introduces every cuisine; signature stories remain exclusive
+// to "An Expression of Flavour" instead of repeating in the menu list.
+const previewOrder = new Map([
+  'Malabar Prawn Curry', 'Chicken Biryani', 'Risotto ai Funghi',
+  'Herb-Roasted Sea Bass', 'Lamb Mandi', 'Croquette',
+].map((name, index) => [name, index]));
+export const dishes: readonly Dish[] = allMenuIdeas
+  .filter(dish => previewDishNames.has(dish.name) && !signatureNames.has(dish.name))
+  .sort((a, b) => (previewOrder.get(a.name) ?? 6) - (previewOrder.get(b.name) ?? 6))
+  .map(dish => ({ ...dish, ...premiumMenuPhotos[dish.name] }));
+
 export const cuisineCount = (cuisine: Cuisine) => cuisine === 'All' ? dishes.length : dishes.filter(dish => dish.cuisine === cuisine).length;

@@ -1,4 +1,6 @@
 /* A compact, progressively revealed photographic menu. */
+.menu-grid .menu-image { aspect-ratio: 3 / 2; }
+.menu-grid .menu-image > img { filter: none; }
 .menu-expand { text-align: center; padding-top: 36px; }
 .menu-expand > p { color: var(--stone); font-size: 11px; line-height: 1.8; margin-bottom: 18px; }
 .menu-expand .button { min-width: 190px; }

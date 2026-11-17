@@ -35,7 +35,7 @@ function Eyebrow({ children, light = false }: { children: ReactNode; light?: boo
 
 function MenuDish({ dish }: { dish: Dish }) {
   return <article className={`menu-card ${dish.image ? 'menu-card-featured' : 'menu-card-text'}`}>
-    {dish.image && <div className="menu-image"><img src={asset(dish.image, true)} srcSet={`${asset(dish.image, true)} 640w, ${asset(dish.image)} 1400w`} sizes="(max-width: 600px) 90vw, (max-width: 900px) 45vw, 30vw" alt={dish.alt ?? `Illustrative ${dish.name}`} width="700" height="525" loading="lazy" /><span>{dish.cuisine}</span></div>}
+    {dish.image && <div className="menu-image"><img src={asset(dish.image, true)} srcSet={`${asset(dish.image, true)} 640w, ${asset(dish.image)} 1400w`} sizes="(max-width: 600px) 90vw, (max-width: 900px) 45vw, 30vw" alt={dish.alt ?? `Illustrative ${dish.name}`} width="1400" height="933" loading="lazy" /><span>{dish.cuisine}</span></div>}
     <div className="menu-card-info"><div className="menu-dish-meta"><span className="course-label">{dish.course}</span>{!dish.image && <span className="menu-cuisine-label">{dish.cuisine}</span>}</div><h3>{dish.name}</h3><p>{dish.description}</p></div>
   </article>;
 }
@@ -195,7 +195,7 @@ function App({ onReplayWelcome }: { onReplayWelcome?: () => void }) {
         <div className="menu-intro" data-reveal><Eyebrow>{site.launched ? 'A MENU WITHOUT BORDERS' : 'MENU PREVIEW · COMING SOON'}</Eyebrow><h2 id="menu-title"><MotionText>Follow your</MotionText>{' '}<em><MotionText>appetite.</MotionText></em></h2><p>{dishes.length} illustrative dishes. Five culinary worlds.<br />Five dishes from each cuisine, selected to inspire your own menu.</p></div>
         {!site.launched && <p className="launch-preview-note">Full menus coming soon. Explore five signature ideas from each cuisine.</p>}
         <div className="menu-filter" aria-label="Filter menu by cuisine">{cuisines.map(name => <button type="button" aria-pressed={cuisine === name} className={cuisine === name ? 'selected' : ''} onClick={() => { setCuisine(name); setMenuExpanded(false); }} key={name}>{name}<span>{String(cuisineCount(name)).padStart(2, '0')}</span></button>)}</div>
-        <div className="menu-status"><span><span className="status-dot" /> ILLUSTRATIVE MENU</span><span aria-live="polite" role="status">{visibleDishes.length < filtered.length ? `Showing ${visibleDishes.length} of ${filtered.length} dishes` : `${filtered.length} dishes`} · {cuisine === 'All' ? 'All cuisines' : cuisine}</span></div>
+        <div className="menu-status"><span><span className="status-dot" /> AI-ILLUSTRATED MENU</span><span aria-live="polite" role="status">{visibleDishes.length < filtered.length ? `Showing ${visibleDishes.length} of ${filtered.length} dishes` : `${filtered.length} dishes`} · {cuisine === 'All' ? 'All cuisines' : cuisine}</span></div>
         <div className="menu-grid" id="menu-dishes" ref={menuGrid}>{visibleDishes.map(dish => <MenuDish dish={dish} key={dish.name} />)}</div>
         {cuisine === 'All' && <div className="menu-expand"><p>{menuExpanded ? 'Five dishes per cuisine. Full menus coming soon.' : `Explore all ${dishes.length} dishes in this preview. Full menus coming soon.`}</p><button type="button" className="button button-outline" aria-expanded={menuExpanded} aria-controls="menu-dishes" onClick={() => {
           setMenuExpanded(value => !value);

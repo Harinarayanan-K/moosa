@@ -12,11 +12,19 @@ Portrait prompt:
 
 ## Illustrative culinary images
 
+### Current menu image series
+
+All 25 dishes in the current menu preview use bespoke AI-generated editorial food illustrations from the built-in `image_gen` tool. They share warm dark stone, soft side lighting, realistic food textures and fully framed serving vessels. These are menu inspiration, not documentary photographs of Chef Moosa's own food. The menu is labelled “AI-illustrated menu”.
+
+Publishable files are `public/images/menu-premium-*.webp`, with matching `-small.webp` variants. Original PNGs are retained under `output/imagegen/menu-premium-*.png` and excluded from Git. The full final prompts and dish descriptions are recorded in `output/imagegen/menu-premium-prompts.json`; file mappings and alternative text are in `src/menu-premium-images.json`. Croquette uses `public/images/croquette-editorial.webp` as its plating reference, retaining two croquettes and the geometric sauces. `node scripts/optimise-menu-assets.mjs` creates 1400- and 640-pixel-wide WebP derivatives without cropping the originals. Cards use a 3:2 frame.
+
+Kerala Fish Moilee, Wild Mushroom Ravioli and Chargrilled Lamb Kofta remain in the signature section and are excluded from the menu preview. Malabar Prawn Curry, Risotto ai Funghi and Lamb Mandi replace them, preserving exactly five menu dishes per cuisine. Earlier stock assets and their licence records are retained as an editable source library; their credit entries do not describe the new AI menu illustrations.
+
 ### Wide hero photographs
 
 Five bespoke hero assets were created with the built-in `image_gen` tool: `public/images/hero-pumpkin-wide.webp`, `hero-indian-wide.webp`, `hero-italian-wide.webp`, `hero-middle-eastern-wide.webp` and `hero-european-wide.webp`. Each has a 640-pixel `-small.webp` derivative. They are AI-generated illustrative photographs, not images of Moosa's own work.
 
-The photographs use a consistent wide tabletop composition, warm dark stone, complete serving vessels, natural side lighting and space for typography. Current hero subjects are Roasted Pumpkin Soup, Chicken Biryani, Pizza Margherita, Lamb Kofta and Herb-Roasted Sea Bass. The complete final prompt set and generation mode are recorded in `output/imagegen/hero-prompts.json`. Original PNGs are retained locally in `output/imagegen/` and excluded from Git; `node scripts/optimise-hero-assets.mjs` creates the WebP derivatives without cropping. The website uses `object-fit: cover` to fill the hero directly; on mobile it uses a full portrait composition, with the headline over the tabletop and a substantially larger complete serving plate. There is no photo zoom animation.
+The photographs use a consistent wide tabletop composition, warm dark stone, complete serving vessels, natural side lighting and space for typography. Current hero subjects are Roasted Pumpkin Soup, Croquette, Chicken Biryani, Lamb Kofta and Herb-Roasted Sea Bass. The older Pizza Margherita hero asset is retained but is not rendered in the hero. The complete final prompt set and generation mode are recorded in `output/imagegen/hero-prompts.json`. Original PNGs are retained locally in `output/imagegen/` and excluded from Git; `node scripts/optimise-hero-assets.mjs` creates the WebP derivatives without cropping. The website uses `object-fit: cover` to fill the hero directly; on mobile it uses a full portrait composition, with the headline over the tabletop and a substantially larger complete serving plate. There is no photo zoom animation.
 
 The website identifies all food and dining imagery as illustrative. It does not present it as Chef Moosa's own photographed work. The dishes are ideas for a personalised menu, not a fixed offering.
 

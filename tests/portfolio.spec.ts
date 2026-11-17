@@ -1,11 +1,13 @@
 import { test, expect } from './fixtures';
 import { createEmailLink, createWhatsAppLink, enquiryMessage } from '../src/config/contact';
-import { cuisines, dishes } from '../src/menu';
+import { cuisines, dishes, signatures } from '../src/menu';
 import { statSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 test('every cuisine has exactly five distinct, photographed preview dishes', () => {
   expect(new Set(dishes.map(dish => dish.name)).size).toBe(dishes.length);
+  for (const signature of signatures) expect(dishes.map(dish => dish.name)).not.toContain(signature.name);
+  expect(new Set(dishes.slice(0, 6).map(dish => dish.cuisine)).size).toBe(5);
   for (const cuisine of cuisines.filter(cuisine => cuisine !== 'All')) {
     const choices = dishes.filter(dish => dish.cuisine === cuisine);
     expect(choices.length).toBe(5);
@@ -14,6 +16,8 @@ test('every cuisine has exactly five distinct, photographed preview dishes', () 
       expect(dish.course.length).toBeGreaterThan(0);
       expect(dish.image).toBeTruthy();
       expect(dish.alt).toBeTruthy();
+      expect(dish.image).toMatch(/^menu-premium-/);
+      expect(dish.alt).toContain('AI-illustrated');
       for (const suffix of ['.webp', '-small.webp']) expect(statSync(resolve('public/images', `${dish.image}${suffix}`)).size).toBeGreaterThan(1000);
     }
   }
@@ -37,11 +41,16 @@ test('contact destinations validate and encode all visitor text', () => {
   for (const label of ['Occasion:', 'Preferred date:', 'Guest count:', 'Location:', 'Dietary requirements:']) expect(menuMessage).toContain(label);
 });
 
-test('all cuisine filters work and preserve the correct results', async ({ page }) => {
+test('all cuisine filters work and preserve the correct results', async ({ page }, testInfo) => {
   await page.goto('/');
   await page.getByRole('link', { name: 'Explore the Menu' }).click();
   await expect(page).toHaveURL(/#menu$/);
   await expect(page.locator('.menu-card')).toHaveCount(6);
+  await page.locator('.menu-grid').evaluate(async grid => {
+    await Promise.all([...grid.querySelectorAll('img')].map(image => { image.loading = 'eager'; return image.decode(); }));
+  });
+  await expect(page.locator('.menu-card').first()).toHaveCSS('opacity', '1');
+  await page.locator('.menu-grid').screenshot({ path: `test-results/${testInfo.project.name}-premium-menu.png`, scale: 'css' });
   const expand = page.getByRole('button', { name: 'See menu preview' });
   await expect(expand).toHaveAttribute('aria-expanded', 'false');
   await expand.click();
@@ -50,13 +59,16 @@ test('all cuisine filters work and preserve the correct results', async ({ page 
   await page.getByRole('button', { name: 'Show less' }).click();
   await expect(page.locator('.menu-card')).toHaveCount(6);
   for (const [cuisine, count, dish] of [
-    ['Kerala', 5, 'Kerala Fish Moilee'], ['Indian', 5, 'Chicken Biryani'],
-    ['Italian', 5, 'Wild Mushroom Ravioli'], ['European', 5, 'Herb-Roasted Sea Bass'],
-    ['Middle Eastern', 5, 'Chargrilled Lamb Kofta'],
+    ['Kerala', 5, 'Malabar Prawn Curry'], ['Indian', 5, 'Chicken Biryani'],
+    ['Italian', 5, 'Risotto ai Funghi'], ['European', 5, 'Herb-Roasted Sea Bass'],
+    ['Middle Eastern', 5, 'Lamb Mandi'],
   ] as const) {
     await page.getByRole('button', { name: new RegExp(`^${cuisine}`) }).click();
     await expect(page.locator('.menu-card')).toHaveCount(count);
     await expect(page.locator('.menu-card .menu-image img')).toHaveCount(count);
+    await page.locator('.menu-grid').evaluate(async grid => {
+      await Promise.all([...grid.querySelectorAll('img')].map(image => { image.loading = 'eager'; return image.decode(); }));
+    });
     await expect(page.locator('.menu-card h3').first()).toHaveText(dish);
     await expect(page.getByRole('button', { name: new RegExp(`^${cuisine}`) })).toHaveAttribute('aria-pressed', 'true');
   }
@@ -199,7 +211,7 @@ test('motion preferences can change while browsing', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.getByRole('button', { name: /^Italian/ }).click();
   await expect(page.locator('.menu-card')).toHaveCount(5);
-  await expect(page.locator('.menu-card h3').first()).toHaveText('Wild Mushroom Ravioli');
+  await expect(page.locator('.menu-card h3').first()).toHaveText('Risotto ai Funghi');
   const menuUrl = new URL((await page.getByRole('link', { name: 'Enquire about this menu' }).getAttribute('href'))!);
   expect(menuUrl.pathname).toBe('/420722018176');
   expect(menuUrl.searchParams.get('text')).toContain('Italian');
