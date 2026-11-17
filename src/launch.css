@@ -1,0 +1,13 @@
+.launch-banner { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px 24px; padding: 13px 24px; background: #201b13; border-bottom: 1px solid var(--line); font-size: 10px; line-height: 1.7; color: #c9bead; }
+.launch-banner strong { display: inline-flex; align-items: center; gap: 9px; color: #e4c58e; font-weight: 500; }
+.launch-banner a { display: inline-flex; align-items: center; gap: 7px; color: #e4c58e; text-decoration: underline; text-underline-offset: 4px; }
+.launch-banner a:hover { color: var(--ivory); }
+.launch-preview-note { max-width: 500px; margin: 24px auto 0; color: #d3b785; font-size: 11px; line-height: 1.8; text-align: center; }
+.contact-launch-note { color: #d3b785; display: block; font-size: 11px; line-height: 1.8; margin-top: 24px; }
+@media (max-width: 600px) {
+  .launch-banner { padding: 11px 22px; gap: 4px 15px; font-size: 9px; }
+  .launch-banner > span { flex-basis: 100%; order: 1; text-align: center; }
+  .launch-preview-note { font-size: 10px; max-width: 300px; }
+  .contact-launch-note { font-size: 10px; max-width: 300px; margin-inline: auto; }
+  .hero-editorial .hero-launch { font-size: 8px; line-height: 1.8; }
+}

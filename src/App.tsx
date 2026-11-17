@@ -1,15 +1,18 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
-import { ArrowUpRight, ArrowDown, ArrowRight, ArrowLeft, ChefHat, Check, MapPin, Menu, Mail, Plus, X } from 'lucide-react';
+import { ArrowUpRight, ArrowDown, ArrowRight, ArrowLeft, ChefHat, Check, MapPin, Menu, Mail, Plus, X, Pause, Play } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { asset, biography, cuisines, dishes, experiences, gallery, signatures, planningSteps, diningQuestions, cuisineCount } from './content';
 import type { Cuisine, Dish } from './content';
 import { contact, emailLink, whatsappLink } from './config/contact';
+import { site } from './config/site';
 import MotionText from './components/MotionText';
 import WhatsAppIcon from './components/WhatsAppIcon';
 import useCinematicMotion from './hooks/useCinematicMotion';
+import useHeroSlideshow from './hooks/useHeroSlideshow';
+import { heroSlides } from './hero-slides';
 
 gsap.registerPlugin(ScrollTrigger);
 const links = [['The Chef', 'the-chef'], ['Menu', 'menu'], ['Experiences', 'experiences'], ['Gallery', 'gallery'], ['Contact', 'contact']];
@@ -76,8 +79,9 @@ function Navigation({ reduced }: { reduced: boolean }) {
   </div></header>;
 }
 
-function App() {
+function App({ onReplayWelcome }: { onReplayWelcome?: () => void }) {
   const root = useRef<HTMLDivElement>(null);
+  const heroElement = useRef<HTMLElement>(null);
   const menuGrid = useRef<HTMLDivElement>(null);
   const signatureImages = useRef<HTMLDivElement>(null);
   const galleryOpener = useRef<HTMLButtonElement | null>(null);
@@ -87,6 +91,7 @@ function App() {
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [floatingVisible, setFloatingVisible] = useState(false);
   const reduced = useReducedMotion();
+  const hero = useHeroSlideshow(heroElement, reduced);
   const filtered = dishes.filter(dish => cuisine === 'All' || dish.cuisine === cuisine);
   const visibleDishes = cuisine === 'All' && !menuExpanded ? filtered.slice(0, 6) : filtered;
   useCinematicMotion(root, reduced, setSignature);
@@ -141,24 +146,32 @@ function App() {
 
   return <div ref={root}>
     <a className="skip-link" href="#main">Skip to content</a>
+    {!site.launched && <aside className="launch-banner" aria-label="Launch announcement"><strong><span className="status-dot" /> Coming soon to Prague</strong><span>A preview of Chef Moosa’s private dining experiences.</span><a href="#contact">Early enquiries <ArrowUpRight size={13} aria-hidden="true" /></a></aside>}
     <Navigation reduced={reduced} />
     <main id="main">
-      <section id="home" className="hero hero-editorial" aria-labelledby="hero-title">
-        <div className="hero-backdrop" aria-hidden="true"><img src={asset('table')} srcSet={`${asset('table', true)} 640w, ${asset('table')} 1400w`} sizes="100vw" alt="" width="1400" height="933" fetchPriority="high" /></div>
+      <section id="home" ref={heroElement} className="hero hero-editorial" aria-labelledby="hero-title" onFocusCapture={event => { const target = event.target as HTMLElement; if (target.matches(':focus-visible') && !target.closest('.hero-slide-pause')) hero.pause(); }}>
+        <div className="hero-backdrop" aria-hidden="true">{heroSlides.map((slide, index) => <div className={`hero-slide ${hero.active === index ? 'is-active' : ''}`} key={slide.image}><picture><source media="(max-width: 600px)" srcSet={`${asset(slide.mobileImage, true)} 480w, ${asset(slide.mobileImage)} 900w`} sizes="100vw" width="900" height="1600" /><img src={asset(slide.image)} srcSet={`${asset(slide.image, true)} 640w, ${asset(slide.image)} ${slide.width}w`} sizes="100vw" alt="" width={slide.width} height={slide.height} fetchPriority={index === 0 ? 'high' : 'low'} /></picture></div>)}</div>
         <div className="section-shell hero-foreground">
         <div className="hero-copy">
           <div className="hero-reveal"><Eyebrow>MOOSA · PRIVATE CHEF PRAGUE</Eyebrow></div>
-          <h1 id="hero-title" aria-label="A world of flavour. A table of your own."><span className="hero-reveal"><MotionText>A world of</MotionText></span><span className="hero-reveal"><MotionText>flavour.</MotionText></span><span className="hero-reveal gold-italic"><MotionText>A table of</MotionText></span><span className="hero-reveal gold-italic"><MotionText>your own.</MotionText></span></h1>
+          <h1 id="hero-title" aria-label="A world of flavour. A table of your own."><span className="hero-reveal"><MotionText>A world of flavour.</MotionText></span><span className="hero-reveal gold-italic"><MotionText>A table of your own.</MotionText></span></h1>
           <div className="hero-introduction">
-            <p className="hero-intro-label">A PERSONAL APPROACH TO DINING</p>
-            <p className="hero-location"><span>Private dining.</span>{' '}<em>Prague.</em></p>
             <p className="hero-description hero-reveal">Personalised dining experiences inspired by Kerala, Indian, Italian, European, and Middle Eastern cuisine.</p>
             <div className="hero-actions hero-reveal"><a className="button button-gold" href="#menu">Explore the Menu <ArrowUpRight size={17} /></a><ContactAction className="text-link" icon={false}><WhatsAppIcon size={16} /> Enquire on WhatsApp</ContactAction></div>
-            <p className="hero-launch hero-reveal"><span className="status-dot" /> Coming soon to Prague</p>
+            <p className="hero-launch hero-reveal"><span className="status-dot" />{site.launched ? 'Personalised menus on request' : 'Not launched yet · Early enquiries welcome'}</p>
+          </div>
+        </div>
+        <div className="hero-slideshow-controls" role="group" aria-label="Featured dishes slideshow" onKeyDownCapture={event => { if (['Enter', ' '].includes(event.key) && !(event.target as HTMLElement).closest('.hero-slide-pause')) hero.pause(); }}>
+          <div className="hero-slide-caption" aria-live={hero.paused || reduced ? 'polite' : 'off'} aria-atomic="true"><span>{String(hero.active + 1).padStart(2, '0')} / {String(heroSlides.length).padStart(2, '0')} · {heroSlides[hero.active].region}</span><p>{heroSlides[hero.active].dish}</p></div>
+          <div className="hero-slide-navigation">
+            <button type="button" className="hero-slide-arrow" aria-label="Previous dish" onClick={() => hero.select(hero.active - 1)}><ArrowLeft size={17} /></button>
+            <div className="hero-slide-dots">{heroSlides.map((slide, index) => <button type="button" key={slide.image} aria-label={`Show ${slide.region}: ${slide.dish}`} aria-pressed={hero.active === index} onClick={() => hero.select(index)}><span /></button>)}</div>
+            <button type="button" className="hero-slide-arrow" aria-label="Next dish" onClick={() => hero.select(hero.active + 1)}><ArrowRight size={17} /></button>
+            {!reduced && <button type="button" className="hero-slide-arrow hero-slide-pause" aria-label={hero.paused ? 'Play slideshow' : 'Pause slideshow'} onClick={hero.toggle}>{hero.paused ? <Play size={15} /> : <Pause size={15} />}</button>}
           </div>
         </div>
         <div className="hero-bottom"><span><MapPin size={13} /> BASED IN PRAGUE</span><span>PRIVATE DINING · SPECIAL OCCASIONS · PERSONALISED MENUS</span><a className="hero-chef-link" href="#the-chef">Meet Chef Moosa <ArrowDown size={14} /></a></div>
-        <span className="hero-image-credit">Illustrative dining atmosphere</span>
+        <span className="hero-image-credit">Illustrative dishes · A taste of five culinary worlds</span>
         </div>
       </section>
 
@@ -179,6 +192,7 @@ function App() {
 
       <section id="menu" className="menu-section" aria-labelledby="menu-title"><div className="section-shell">
         <div className="menu-intro" data-reveal><Eyebrow>A MENU WITHOUT BORDERS</Eyebrow><h2 id="menu-title"><MotionText>Follow your</MotionText>{' '}<em><MotionText>appetite.</MotionText></em></h2><p>{dishes.length} illustrative dishes. Five culinary worlds.<br />A little inspiration for a menu made just for you.</p></div>
+        {!site.launched && <p className="launch-preview-note">A preview of menus to come. Private dining is coming soon to Prague.</p>}
         <div className="menu-filter" aria-label="Filter menu by cuisine">{cuisines.map(name => <button type="button" aria-pressed={cuisine === name} className={cuisine === name ? 'selected' : ''} onClick={() => { setCuisine(name); setMenuExpanded(false); }} key={name}>{name}<span>{String(cuisineCount(name)).padStart(2, '0')}</span></button>)}</div>
         <div className="menu-status"><span><span className="status-dot" /> ILLUSTRATIVE MENU</span><span aria-live="polite" role="status">{visibleDishes.length < filtered.length ? `Showing ${visibleDishes.length} of ${filtered.length} dishes` : `${filtered.length} dishes`} · {cuisine === 'All' ? 'All cuisines' : cuisine}</span></div>
         <div className="menu-grid" id="menu-dishes" ref={menuGrid}>{visibleDishes.map(dish => <MenuDish dish={dish} key={dish.name} />)}</div>
@@ -189,7 +203,7 @@ function App() {
         <div className="menu-footnote"><div><Check size={17} strokeWidth={1.5} /><span>Personalised menus on request</span></div><ContactAction className="text-link" context={`${cuisine === 'All' ? 'a menu exploring all cuisines' : `the ${cuisine} menu`}`}>Enquire about this menu</ContactAction></div>
       </div></section>
 
-      <section className="experiences-section section-shell" id="experiences" aria-labelledby="experiences-title"><div className="section-heading" data-reveal><div><Eyebrow>MORE THAN A MEAL</Eyebrow><h2 id="experiences-title"><MotionText>Your occasion.</MotionText><br /><em><MotionText>My inspiration.</MotionText></em></h2></div><p>Thoughtful food. Meaningful moments.<br />An experience that feels entirely your own.</p></div>
+      <section className="experiences-section section-shell" id="experiences" aria-labelledby="experiences-title"><div className="section-heading" data-reveal><div><Eyebrow>MORE THAN A MEAL</Eyebrow><h2 id="experiences-title"><MotionText>Your occasion.</MotionText><br /><em><MotionText>My inspiration.</MotionText></em></h2></div><p>{site.launched ? <>Thoughtful food. Meaningful moments.<br />An experience that feels entirely your own.</> : <>Experiences coming soon to Prague.<br />Explore what’s being prepared for your table.</>}</p></div>
         <div className="experience-rows">{experiences.map(item => <article className="experience-row" key={item.title} data-reveal><span className="experience-number">{item.number}</span><div className="experience-name"><h3><MotionText>{item.title}</MotionText></h3><p>{item.note}</p></div><p className="experience-description">{item.description}</p><ContactAction className="round-link" context={item.title} icon={false}><span className="sr-only">Enquire on WhatsApp about {item.title}</span><ArrowUpRight size={25} strokeWidth={1} /></ContactAction></article>)}</div>
         <a className="text-link planning-shortcut" href="#planning">How it comes together <ArrowDown size={15} /></a>
       </section>
@@ -213,9 +227,9 @@ function App() {
 
       <section className="questions-section" id="questions" aria-labelledby="questions-title"><div className="section-shell questions-layout"><div className="questions-intro" data-reveal><Eyebrow>GOOD TO KNOW</Eyebrow><h2 id="questions-title"><MotionText>Before we</MotionText><br /><em><MotionText>set the table.</MotionText></em></h2><p>A few answers to help you<br />imagine your own experience.</p><a className="text-link" href="#contact">Have another question? <ArrowUpRight size={16} /></a></div><div className="questions-list">{diningQuestions.map(item => <details className="dining-question" name="dining-questions" key={item.question}><summary><span>{item.question}</span><Plus size={19} aria-hidden="true" /></summary><div className="question-answer"><p>{item.answer}</p></div></details>)}</div></div></section>
 
-      <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="contact-watermark" aria-hidden="true">MOOSA</div><div className="section-shell contact-inner" data-reveal><ChefHat className="contact-hat" size={38} strokeWidth={1} /><Eyebrow>YOUR TABLE. YOUR PEOPLE. YOUR MOMENT.</Eyebrow><h2 id="contact-title"><MotionText>Let’s create an unforgettable</MotionText><br /><em><MotionText>dining experience.</MotionText></em></h2><p>It all starts with a conversation.<br />Tell me what you have in mind, and we’ll take it from there.</p><div className="contact-actions"><ContactAction className="button button-gold"><WhatsAppIcon size={18} />Chat on WhatsApp</ContactAction><ContactAction email className="button button-outline"><Mail size={18} strokeWidth={1.5} />Send an Email</ContactAction></div>{!whatsappLink() && !emailLink() && <span className="contact-soon"><span className="status-dot" /> Contact details coming soon</span>}<span className="contact-location"><MapPin size={13} />COMING SOON TO PRAGUE</span></div></section>
+      <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="contact-watermark" aria-hidden="true">MOOSA</div><div className="section-shell contact-inner" data-reveal><ChefHat className="contact-hat" size={38} strokeWidth={1} /><Eyebrow>YOUR TABLE. YOUR PEOPLE. YOUR MOMENT.</Eyebrow><h2 id="contact-title"><MotionText>Let’s create an unforgettable</MotionText><br /><em><MotionText>dining experience.</MotionText></em></h2><p>It all starts with a conversation.<br />Tell me what you have in mind, and we’ll take it from there.</p>{!site.launched && <span className="contact-launch-note">We haven’t launched yet. Get in touch for early enquiries about future dining experiences.</span>}<div className="contact-actions"><ContactAction className="button button-gold"><WhatsAppIcon size={18} />Chat on WhatsApp</ContactAction><ContactAction email className="button button-outline"><Mail size={18} strokeWidth={1.5} />Send an Email</ContactAction></div>{!whatsappLink() && !emailLink() && <span className="contact-soon"><span className="status-dot" /> Contact details coming soon</span>}<span className="contact-location"><MapPin size={13} />COMING SOON TO PRAGUE</span></div></section>
     </main>
-    <footer className="site-footer section-shell"><a className="wordmark" href="#home">MOOSA<span>PRIVATE CHEF · PRAGUE</span></a><span>Authentic flavours. International cuisine.</span><div><span>© {new Date().getFullYear()} Chef Moosa</span><a href="#questions">Good to know <ArrowUpRight size={14} /></a><a href={`${import.meta.env.BASE_URL}photo-credits.html`}>Photo credits <ArrowUpRight size={14} /></a><a href="#home" aria-label="Back to top">Back to top <ArrowUpRight size={14} /></a></div></footer>
+    <footer className="site-footer section-shell"><a className="wordmark" href="#home">MOOSA<span>PRIVATE CHEF · PRAGUE</span></a><span>Authentic flavours. International cuisine.</span><div><span>© {new Date().getFullYear()} Chef Moosa</span><a href="#questions">Good to know <ArrowUpRight size={14} /></a><a href={`${import.meta.env.BASE_URL}photo-credits.html`}>Photo credits <ArrowUpRight size={14} /></a>{onReplayWelcome && !reduced && <button type="button" className="welcome-replay" onClick={onReplayWelcome}>Replay welcome <Play size={12} aria-hidden="true" /></button>}<a href="#home" aria-label="Back to top">Back to top <ArrowUpRight size={14} /></a></div></footer>
     <ContactAction className={`floating-whatsapp ${floatingVisible ? '' : 'floating-hidden'}`} icon={false}><WhatsAppIcon size={24} /><span className="floating-label">{whatsappLink() ? 'Chat on WhatsApp' : 'WhatsApp · Coming soon'}</span></ContactAction>
   </div>;
 }

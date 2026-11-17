@@ -1,3 +1,5 @@
+import { site } from './config/site';
+
 // Edit this file to update the biography, menu, services and image descriptions.
 // Biography facts are from the supplied Chef Moosa poster; no awards or claims
 // about experience have been inferred. Menu dishes and food photos illustrate
@@ -30,6 +32,7 @@ export const planningSteps = [
 ];
 
 export const diningQuestions = [
+  ...(!site.launched ? [{ question: 'Have private dining experiences launched yet?', answer: 'Not yet. Chef Moosa’s private dining experiences are coming soon to Prague. Explore this website as a preview of the chef, cuisines and future experiences. WhatsApp and email are open for early enquiries; availability and arrangements will be confirmed directly.' }] : []),
   { question: 'Can I request a menu that is not shown?', answer: 'Yes. Personalised menus are the starting point. The dishes on this website are illustrative ideas; share the cuisines and flavours you enjoy to begin a conversation about your own menu.' },
   { question: 'What about allergies and dietary requirements?', answer: 'Please mention allergies, intolerances and dietary requirements in your first enquiry. Confirm menu suitability and any limitations directly with Moosa before agreeing an experience.' },
   { question: 'How many guests can I enquire for?', answer: 'Include your approximate guest count and intended setting in your enquiry. The suitability of your location and any kitchen or service arrangements should be discussed individually.' },

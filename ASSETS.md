@@ -12,6 +12,12 @@ Portrait prompt:
 
 ## Illustrative culinary images
 
+### Wide hero photographs
+
+Five bespoke hero assets were created with the built-in `image_gen` tool: `public/images/hero-kerala-wide.webp`, `hero-indian-wide.webp`, `hero-italian-wide.webp`, `hero-middle-eastern-wide.webp` and `hero-european-wide.webp`. Each has a 640-pixel `-small.webp` derivative. They are AI-generated illustrative photographs, not images of Moosa's own work.
+
+The photographs use a consistent wide tabletop composition, warm dark stone, complete serving vessels, natural side lighting and space for typography. Subjects are Kerala Fish Moilee, Chicken Biryani, Pizza Margherita, Lamb Kofta and Herb-Roasted Sea Bass. The complete final prompt set and generation mode are recorded in `output/imagegen/hero-prompts.json`. Original PNGs are retained locally in `output/imagegen/` and excluded from Git; `node scripts/optimise-hero-assets.mjs` creates the WebP derivatives without cropping. The website preserves each complete frame with `object-fit: contain`; on mobile it uses a full portrait composition, with the headline over the tabletop and a substantially larger complete serving plate. There is no photo zoom animation.
+
 The website identifies all food and dining imagery as illustrative. It does not present it as Chef Moosa's own photographed work. The dishes are ideas for a personalised menu, not a fixed offering.
 
 Locally stored stock images from Unsplash:
@@ -51,3 +57,7 @@ Cormorant Garamond (normal and italic) and DM Sans are hosted locally as Latin-s
 ## WhatsApp icon
 
 The WhatsApp SVG mark is from [Bootstrap Icons](https://icons.getbootstrap.com/icons/whatsapp/), distributed under the MIT licence. Its licence is included at `public/licenses/bootstrap-icons.txt`; the reusable component is `src/components/WhatsAppIcon.tsx`.
+
+### Mobile hero photographs
+
+Five portrait companions were generated with the built-in `image_gen` tool, using the corresponding wide hero PNG as the visual reference. These `public/images/hero-*-mobile.webp` assets and their `-small.webp` variants show the same dishes in a 9:16 composition. The food occupies roughly three quarters of the image width, below room for the headline. They are resized without cropping. Original PNGs are retained in `output/imagegen/`, with final prompt and reference paths in `output/imagegen/hero-mobile-prompts.json`. Recreate WebP derivatives with `node scripts/optimise-mobile-hero-assets.mjs`. Desktop continues using the wide compositions.

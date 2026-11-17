@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './fixtures';
 import { createEmailLink, createWhatsAppLink, enquiryMessage } from '../src/config/contact';
 import { cuisines, dishes } from '../src/menu';
 import { statSync } from 'node:fs';
@@ -63,13 +63,13 @@ test('all cuisine filters work and preserve the correct results', async ({ page 
   await page.getByRole('button', { name: /^All/ }).click();
   await expect(page.locator('.menu-card')).toHaveCount(6);
   const enquiry = page.getByRole('link', { name: 'Enquire about this menu' });
-  await expect(enquiry).toHaveAttribute('href', /^https:\/\/wa.me\/919846439316\?text=/);
+  await expect(enquiry).toHaveAttribute('href', /^https:\/\/wa.me\/420722018176\?text=/);
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });
 
 test('lightbox wraps, supports buttons and keyboard, and returns focus', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('#home .hero-backdrop img')).toHaveCount(1);
+  await expect(page.locator('#home .hero-backdrop img')).toHaveCount(5);
   await expect(page.locator('img[src$="/chef.webp"]')).toHaveCount(1);
   const trigger = page.getByRole('button', { name: 'Open image 1: The art of the plate' });
   await trigger.click();
@@ -100,11 +100,11 @@ test('WhatsApp and email links use the supplied contact details', async ({ page 
   for (const link of await links.all()) {
     const url = new URL((await link.getAttribute('href'))!);
     expect(url.origin).toBe('https://wa.me');
-    expect(url.pathname).toBe('/919846439316');
+    expect(url.pathname).toBe('/420722018176');
     expect(url.searchParams.get('text')).toContain('Hello Chef Moosa');
     await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   }
-  await expect(page.getByRole('link', { name: 'Chat on WhatsApp', exact: true })).toHaveAttribute('href', /^https:\/\/wa.me\/919846439316\?text=/);
+  await expect(page.getByRole('link', { name: 'Chat on WhatsApp', exact: true })).toHaveAttribute('href', /^https:\/\/wa.me\/420722018176\?text=/);
   const email = page.getByRole('link', { name: 'Send an Email', exact: true });
   const emailUrl = new URL((await email.getAttribute('href'))!);
   expect(emailUrl.protocol).toBe('mailto:');
@@ -201,7 +201,7 @@ test('motion preferences can change while browsing', async ({ page }) => {
   await expect(page.locator('.menu-card')).toHaveCount(10);
   await expect(page.locator('.menu-card h3').first()).toHaveText('Wild Mushroom Ravioli');
   const menuUrl = new URL((await page.getByRole('link', { name: 'Enquire about this menu' }).getAttribute('href'))!);
-  expect(menuUrl.pathname).toBe('/919846439316');
+  expect(menuUrl.pathname).toBe('/420722018176');
   expect(menuUrl.searchParams.get('text')).toContain('Italian');
   await expect(page.getByRole('dialog')).toHaveCount(0);
 });
@@ -211,8 +211,8 @@ test('planning guidance and FAQs work with keyboard navigation', async ({ page }
   await page.getByRole('link', { name: 'How it comes together' }).click();
   await expect(page).toHaveURL(/#planning$/);
   await expect(page.locator('.planning-steps > li')).toHaveCount(3);
-  await expect(page.getByRole('link', { name: 'Discuss your evening' })).toHaveAttribute('href', /^https:\/\/wa.me\/919846439316\?text=/);
-  const question = page.locator('.dining-question').nth(0);
+  await expect(page.getByRole('link', { name: 'Discuss your evening' })).toHaveAttribute('href', /^https:\/\/wa.me\/420722018176\?text=/);
+  const question = page.locator('.dining-question').filter({ hasText: 'Can I request a menu that is not shown?' });
   await question.locator('summary').focus();
   await page.keyboard.press('Enter');
   await expect(question).toHaveAttribute('open', '');
@@ -220,7 +220,7 @@ test('planning guidance and FAQs work with keyboard navigation', async ({ page }
   await page.keyboard.press('Enter');
   await expect(question).not.toHaveAttribute('open');
   await page.keyboard.press('Tab');
-  const dietaryQuestion = page.locator('.dining-question').nth(1);
+  const dietaryQuestion = page.locator('.dining-question').filter({ hasText: 'What about allergies and dietary requirements?' });
   await expect(dietaryQuestion.locator('summary')).toBeFocused();
   await page.keyboard.press('Space');
   await expect(dietaryQuestion.locator('.question-answer')).toBeVisible();

@@ -1,0 +1,26 @@
+{
+  "mode": "Built-in image_gen tool; portrait re-compositions using the corresponding generated wide photograph as reference",
+  "prompt": "Use case: photorealistic-natural. Create a mobile-specific portrait re-composition of the referenced culinary photograph for a luxury private chef website. Output a TALL 9:16 portrait photograph, one coherent image. Preserve the same exact dish, warm natural lighting, dark bronze stone table, realistic food and sophisticated tableware. Change the camera framing and composition for a mobile screen: the COMPLETE main plate or bowl is large, about 72–80% of the frame WIDTH, placed in the LOWER HALF, with its centre approximately 69% down the frame. Every rim edge must remain fully inside the image with comfortable margins. Keep any existing side dish or bread entirely visible, placed behind the main serving vessel. Upper 40% of the portrait must show a continuous, softly illuminated warm charcoal/bronze stone table, uncluttered, naturally textured and clearly visible, providing a calm backdrop for overlaid ivory typography. This must NOT have a black empty panel above or below, black borders, letterboxing, or an abrupt transition: the stone table fills the entire portrait edge to edge. A wide establishing view of the complete dish, not a macro, not a close-up detail, and never cut the food or plate. Photorealistic editorial hospitality photograph, natural tactile food texture, realistic shadows, warm champagne highlights. No text, logos, watermark, UI, collage, people or hands. This is illustrative food imagery.",
+  "images": [
+    {
+      "name": "hero-kerala-mobile",
+      "reference": "output/imagegen/hero-kerala-wide.png"
+    },
+    {
+      "name": "hero-indian-mobile",
+      "reference": "output/imagegen/hero-indian-wide.png"
+    },
+    {
+      "name": "hero-italian-mobile",
+      "reference": "output/imagegen/hero-italian-wide.png"
+    },
+    {
+      "name": "hero-middle-eastern-mobile",
+      "reference": "output/imagegen/hero-middle-eastern-wide.png"
+    },
+    {
+      "name": "hero-european-mobile",
+      "reference": "output/imagegen/hero-european-wide.png"
+    }
+  ]
+}

@@ -1,3 +1,5 @@
+import { site } from './site';
+
 /**
  * CONTACT CONFIGURATION — the only place contact details need to be edited.
  * Leave either value empty until the real detail is available. No placeholder
@@ -6,7 +8,7 @@
  * Run `npm run build` after editing, then deploy the dist/ directory.
  */
 export const contact = {
-  whatsappNumber: '919846439316',
+  whatsappNumber: '420722018176',
   emailAddress: 'libinsadk@gmail.com',
   defaultEnquiry: 'Hello Chef Moosa, I would love to enquire about a personalised dining experience in Prague.',
   emailSubject: 'Private dining enquiry — Chef Moosa',
@@ -27,6 +29,7 @@ export function createEmailLink(address: string, subject: string, body = ''): st
 export function enquiryMessage(context?: string): string {
   return [
     contact.defaultEnquiry,
+    ...(!site.launched ? ['I understand private dining is coming soon to Prague; this is an early enquiry.'] : []),
     ...(context ? [`I am interested in ${context}.`] : []),
     ...(contact.enquiryFields.length ? [contact.enquiryFields.map(field => `${field}:`).join('\n')] : []),
   ].join('\n\n');

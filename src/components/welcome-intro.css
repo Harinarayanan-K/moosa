@@ -1,0 +1,30 @@
+.welcome-intro { position: fixed; inset: 0; z-index: 100; min-height: 100svh; display: flex; flex-direction: column; align-items: center; padding: 44px 6vw 24px; overflow: auto; background: radial-gradient(ellipse at 50% 57%, #282116 0%, #15120e 43%, #0d0c0a 75%); color: var(--ivory); }
+.welcome-wordmark { text-align: center; font-size: 48px; }
+.welcome-wordmark span { font-size: 7px; letter-spacing: 3px; margin-top: 14px; }
+.welcome-content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; padding-block: 30px; text-align: center; }
+.welcome-eyebrow { color: #d8bd90; font-size: 8px; letter-spacing: 2.6px; line-height: 1.8; }
+.welcome-title { font-size: clamp(54px, 5vw, 79px); line-height: 1.02; letter-spacing: -1px; margin-top: 23px; }
+.welcome-title em { color: var(--gold); }
+.welcome-scene { display: block; flex-shrink: 0; width: min(680px, 100%); height: auto; color: #cba66a; margin: 14px auto 5px; }
+.welcome-skyline { opacity: .28; }
+.welcome-destination { opacity: .65; }
+.welcome-caption { color: #d8bd90; font-family: var(--serif); font-size: 25px; line-height: 1.5; }
+.welcome-progress { width: min(190px, 45vw); height: 1px; background: #cba66a30; overflow: hidden; margin-top: 20px; }
+.welcome-progress-line { display: block; width: 100%; height: 100%; background: var(--gold); transform-origin: left; }
+.welcome-footer { display: flex; width: 100%; justify-content: space-between; align-items: center; gap: 20px; color: #b6aa96; }
+.welcome-footer > span { font-size: 7px; letter-spacing: 1.5px; }
+.welcome-footer > button { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 10px 0 10px 12px; color: var(--gold); background: transparent; border: 0; font-size: 11px; }
+.welcome-footer > button:hover { color: var(--ivory); }
+.welcome-replay { display: inline-flex; align-items: center; gap: 6px; min-height: 28px; padding: 0; color: inherit; font: inherit; background: transparent; border: 0; }
+.welcome-replay:hover { color: var(--gold); }
+@media (max-width: 600px) {
+  .welcome-intro { padding: max(28px, env(safe-area-inset-top)) 22px max(18px, env(safe-area-inset-bottom)); }
+  .welcome-wordmark { font-size: 40px; }
+  .welcome-eyebrow { font-size: 7px; letter-spacing: 1.5px; }
+  .welcome-title { font-size: clamp(49px, 14vw, 67px); margin-top: 20px; }
+  .welcome-scene { width: calc(100% + 24px); max-width: none; margin-left: -12px; margin-right: -12px; margin-top: 22px; }
+  .welcome-caption { font-size: 22px; margin-top: 12px; }
+  .welcome-footer > span { font-size: 6px; letter-spacing: .7px; max-width: 155px; line-height: 1.8; }
+}
+@media (max-height: 620px) { .welcome-intro { padding-top: 20px; } .welcome-content { padding-block: 15px; } .welcome-title { font-size: 42px; margin-top: 12px; } .welcome-scene { width: min(430px, 75vw); margin-top: 0; } .welcome-wordmark { font-size: 34px; } }
+@media (prefers-reduced-motion: reduce) { .welcome-intro, .welcome-intro * { animation: none !important; transition: none !important; } }

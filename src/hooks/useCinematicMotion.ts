@@ -15,11 +15,9 @@ export default function useCinematicMotion(root: RefObject<HTMLDivElement | null
     const context = gsap.context(() => {
       try {
         const intro = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: .08 });
-        // One gentle camera settle, under five seconds; no looping movement.
-        gsap.fromTo('.hero-backdrop img', { scale: 1.075 }, { scale: 1, duration: 4, ease: 'power2.out', clearProps: 'transform' });
         intro.fromTo('.hero-copy>.hero-reveal', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: .8, clearProps: 'transform,opacity' }, 0)
           .fromTo('.hero h1 .motion-word', { yPercent: 112, rotateX: -22, opacity: 0 }, { yPercent: 0, rotateX: 0, opacity: 1, duration: 1.3, stagger: .075, clearProps: 'transform,opacity' }, .12)
-          .fromTo('.hero-intro-label, .hero-location, .hero-launch', { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .85, stagger: .12, clearProps: 'transform,opacity' }, .55)
+          .fromTo('.hero-launch', { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .85, clearProps: 'transform,opacity' }, .55)
           .fromTo('.hero-description, .hero-actions, .scroll-cue', { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: .95, stagger: .12, clearProps: 'transform,opacity' }, .65);
 
         // A shared reveal vocabulary, with each child entering independently.
@@ -42,7 +40,6 @@ export default function useCinematicMotion(root: RefObject<HTMLDivElement | null
           const desktop = !!match.conditions?.desktop;
           if (desktop) {
             gsap.fromTo('.chef-image>img', { scale: 1.06, yPercent: -2 }, { scale: 1.06, yPercent: 2, ease: 'none', scrollTrigger: { trigger: '.chef-image', start: 'top bottom', end: 'bottom top', scrub: .8 } });
-            gsap.fromTo('.hero h1', { y: 0 }, { y: -65, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: .9 } });
             gsap.utils.toArray<HTMLElement>('.signature-story').forEach((story, i) => {
               ScrollTrigger.create({ trigger: story, start: 'top 58%', end: 'bottom 58%', onEnter: () => onSignature(i), onEnterBack: () => onSignature(i) });
               gsap.fromTo(story.querySelectorAll('h3, p, .signature-note'), { y: 32, opacity: .3 }, { y: 0, opacity: 1, stagger: .08, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: story, start: 'top 83%', once: true }, clearProps: 'transform,opacity' });
